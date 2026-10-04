@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PulseGrid Documentation — Citadel of Autonomous Agents</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/favicon.svg">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,9 +60,21 @@
   <!-- Header -->
   <header class="relative z-40 w-full px-8 md:px-16 pt-8 pb-4 flex items-center justify-between border-b border-white/10 bg-[#030304]/90 backdrop-blur-md sticky top-0">
     <div class="flex items-center gap-6">
-      <a href="/" class="flex items-center gap-3 group">
-        <span class="w-8 h-8 rounded-full bg-white text-black font-bold flex items-center justify-center font-mono text-xs">⚡</span>
-        <span class="font-serif text-2xl text-white font-normal tracking-tight group-hover:text-neutral-300 transition-colors">PulseGrid</span>
+      <a href="/" class="flex items-center gap-3 group flex-shrink-0">
+        <div class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-purple-900/60 via-purple-950/40 to-black border border-purple-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(131,110,249,0.35)] group-hover:border-purple-400 group-hover:shadow-[0_0_25px_rgba(131,110,249,0.6)] transition-all duration-300">
+          <svg class="w-4 h-4 text-purple-200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 6H19M7 4H17M8 8H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8 8V16M16 8V16" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M12 7L10.5 12H13.5L12 17" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="1.2" fill="#FFFFFF"/>
+            <path d="M7 16H17M5 18H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-purple-400"></span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-xl tracking-wider font-semibold text-white group-hover:text-purple-200 transition-colors leading-none">PULSEGRID</span>
+          <span class="font-mono text-[9px] tracking-[0.25em] text-purple-400/90 uppercase leading-tight mt-1">CITADEL · MONAD</span>
+        </div>
       </a>
       <span class="text-xs font-mono uppercase tracking-[0.2em] text-neutral-500 hidden sm:inline-block">/ DOCUMENTATION</span>
     </div>

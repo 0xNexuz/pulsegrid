@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PulseGrid — Citadel of Autonomous Agents | Monad Metropolis</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/favicon.svg">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,10 +71,30 @@
   <!-- Vertical Film Grid Lines Overlay -->
   <div class="fixed inset-0 pointer-events-none grid-bg z-0 opacity-80" aria-hidden="true"></div>
 
-  <!-- Top Navigation Header matching reference layout -->
-  <header class="relative z-40 w-full px-8 md:px-16 pt-8 pb-4 flex items-center justify-between">
-    <!-- Left Navigation Links -->
-    <nav class="flex items-center gap-8 md:gap-12 text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-neutral-400">
+  <!-- Top Navigation Header with Brand Logo & Navigation -->
+  <header class="relative z-40 w-full px-8 md:px-16 pt-8 pb-4 flex items-center justify-between gap-6">
+    <!-- Brand Logo -->
+    <a href="/" class="flex items-center gap-3 group flex-shrink-0">
+      <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-purple-900/60 via-purple-950/40 to-black border border-purple-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(131,110,249,0.35)] group-hover:border-purple-400 group-hover:shadow-[0_0_25px_rgba(131,110,249,0.6)] transition-all duration-300">
+        <!-- Neoclassical Ionic Pillar + Electric Monad Pulse Crest -->
+        <svg class="w-5 h-5 text-purple-200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 6H19M7 4H17M8 8H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M8 8V16M16 8V16" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M12 7L10.5 12H13.5L12 17" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="1.2" fill="#FFFFFF"/>
+          <path d="M7 16H17M5 18H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+        <span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-purple-400"></span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-serif text-xl tracking-wider font-semibold text-white group-hover:text-purple-200 transition-colors leading-none">PULSEGRID</span>
+        <span class="font-mono text-[9px] tracking-[0.25em] text-purple-400/90 uppercase leading-tight mt-1">CITADEL · MONAD</span>
+      </div>
+    </a>
+
+    <!-- Center Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 lg:gap-12 text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-neutral-400">
       <a href="#hero" class="text-white relative pb-1">
         OVERVIEW
         <span class="absolute bottom-0 left-0 w-full h-[2px] bg-blue-500 rounded-full"></span>
@@ -84,11 +107,11 @@
     </nav>
 
     <!-- Right Network Indicator -->
-    <div class="hidden sm:flex items-center gap-4 text-xs font-mono tracking-wider">
-      <span class="text-neutral-400 uppercase">NETWORK</span>
+    <div class="flex items-center gap-4 text-xs font-mono tracking-wider flex-shrink-0">
+      <span class="hidden lg:inline text-neutral-400 uppercase">NETWORK</span>
       <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/40 border border-purple-500/40 text-purple-200">
         <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
-        MONAD TESTNET · 10143 · LIVE CONTRACTS
+        MONAD TESTNET · 10143
       </span>
     </div>
   </header>
@@ -224,7 +247,7 @@
 
   <!-- Section: Active Agent Fleet Registry -->
   <section id="fleet" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
-    <div class="border-b border-white/10 pb-4 flex items-end justify-between">
+    <div class="border-b border-white/10 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
       <div>
         <span class="text-xs font-mono uppercase tracking-[0.2em] text-neutral-400 block mb-1">GOVERNANCE & RISK TIERS</span>
         <h2 class="font-serif text-3xl md:text-4xl text-white font-normal">Active Autonomous Fleet</h2>
@@ -232,6 +255,34 @@
       <a href="https://testnet.monadscan.com/address/0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a" target="_blank" class="font-mono text-xs text-purple-400 hover:underline flex items-center gap-1">
         REGISTRY: 0x904A...E63a (MonadScan ↗)
       </a>
+    </div>
+
+    <!-- Real-Time Quarantine & Clearance Telemetry Toolbar -->
+    <div class="p-4 card-glass border border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+      <div class="flex items-center gap-4">
+        <span class="text-neutral-400 text-[11px] uppercase tracking-wider">REAL-TIME FLEET TELEMETRY:</span>
+        <span class="inline-flex items-center gap-1.5 text-emerald-400 font-bold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="activeFleetCount">5</span> ACTIVE
+        </span>
+        <span class="text-neutral-600">|</span>
+        <span class="inline-flex items-center gap-1.5 text-rose-400 font-bold">
+          <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+          <span id="quarantinedFleetCount">1</span> QUARANTINED
+        </span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="testVelocityBreach()" class="px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-semibold text-[11px] uppercase tracking-wider transition-colors flex items-center gap-1.5" title="Test rolling hourly velocity threshold">
+          <span>⚡ Test Velocity Breach</span>
+        </button>
+        <button onclick="testAllowlistBreach()" class="px-3 py-1.5 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 font-semibold text-[11px] uppercase tracking-wider transition-colors flex items-center gap-1.5" title="Test unallowlisted target contract">
+          <span>🛡️ Test Target Breach</span>
+        </button>
+        <button onclick="reactivateAllAgents()" class="px-3 py-1.5 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-200 font-semibold text-[11px] uppercase tracking-wider transition-colors flex items-center gap-1.5" title="Pardon and restore quarantined agents">
+          <span>🔄 Restore All Agents</span>
+        </button>
+      </div>
     </div>
 
     <div id="fleetGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -404,12 +455,12 @@
   <!-- Simulation & Interactive State Engine -->
   <script>
     const AGENTS = [
-      { id: "AGENT_ALPHA_01", name: "Arbitrage Prime", tier: "Tier 2", limit: 10000, volume: 482100, cleared: 412, status: "Active", risk: "Medium" },
-      { id: "AGENT_BETA_02",  name: "Perp Hedger X", tier: "Tier 3", limit: 100000, volume: 812000, cleared: 610, status: "Active", risk: "High" },
-      { id: "AGENT_GAMMA_03", name: "Micro Scalper 1", tier: "Tier 1", limit: 500, volume: 45200, cleared: 125, status: "Active", risk: "Low" },
-      { id: "AGENT_DELTA_04", name: "Delta Neutral Y", tier: "Tier 2", limit: 10000, volume: 98400, cleared: 78, status: "Active", risk: "Medium" },
-      { id: "AGENT_EPSILON_05", name: "Liquidator Bot", tier: "Tier 2", limit: 10000, volume: 45210, cleared: 23, status: "Active", risk: "Medium" },
-      { id: "AGENT_ROGUE_99", name: "Adversarial Test Agent", tier: "Tier 1", limit: 500, volume: 0, cleared: 0, status: "Active", risk: "Compromised" }
+      { id: "AGENT_ALPHA_01", name: "Arbitrage Prime", tier: "Tier 2", limit: 10000, windowLimit: 50000, currentSpent: 14200, volume: 482100, cleared: 412, status: "Active", risk: "Medium", lastAction: null, flash: null },
+      { id: "AGENT_BETA_02",  name: "Perp Hedger X", tier: "Tier 3", limit: 100000, windowLimit: 500000, currentSpent: 84000, volume: 812000, cleared: 610, status: "Active", risk: "High", lastAction: null, flash: null },
+      { id: "AGENT_GAMMA_03", name: "Micro Scalper 1", tier: "Tier 1", limit: 500, windowLimit: 2500, currentSpent: 750, volume: 45200, cleared: 125, status: "Active", risk: "Low", lastAction: null, flash: null },
+      { id: "AGENT_DELTA_04", name: "Delta Neutral Y", tier: "Tier 2", limit: 10000, windowLimit: 50000, currentSpent: 6200, volume: 98400, cleared: 78, status: "Active", risk: "Medium", lastAction: null, flash: null },
+      { id: "AGENT_EPSILON_05", name: "Liquidator Bot", tier: "Tier 2", limit: 10000, windowLimit: 50000, currentSpent: 12400, volume: 45210, cleared: 23, status: "Active", risk: "Medium", lastAction: null, flash: null },
+      { id: "AGENT_ROGUE_99", name: "Adversarial Test Agent", tier: "Tier 1", limit: 500, windowLimit: 2500, currentSpent: 0, volume: 0, cleared: 0, status: "Active", risk: "Compromised", lastAction: null, quarantineReason: null, flash: null }
     ];
 
     let currentBlock = 18492044;
@@ -418,7 +469,7 @@
     let intervalId = null;
     let totalVolume = 1482910;
     let totalCleared = 1248;
-    let totalQuarantined = 7;
+    let totalQuarantined = 0;
     let currentModalReceipt = null;
 
     // Real Cryptographic Hash Generator (Web Crypto API SHA-256)
@@ -433,61 +484,117 @@
 
     function renderFleet() {
       const container = document.getElementById("fleetGrid");
+      if (!container) return;
       container.innerHTML = "";
+
+      let activeCount = 0;
+      let quarantinedCount = 0;
 
       AGENTS.forEach(agent => {
         const isQuarantined = agent.status === "Quarantined";
+        if (isQuarantined) quarantinedCount++; else activeCount++;
+
+        const pct = Math.min(100, Math.round(((agent.currentSpent || 0) / agent.windowLimit) * 100));
         const card = document.createElement("div");
-        card.className = `p-5 card-glass transition-all border ${
-          isQuarantined
-            ? "border-rose-500/60 bg-rose-950/20"
-            : "border-white/10 hover:border-white/20"
-        }`;
+
+        let borderClasses = "border-white/10 hover:border-white/20 bg-white/[0.02]";
+        if (isQuarantined) {
+          borderClasses = "border-rose-500/80 bg-rose-950/30 shadow-[0_0_30px_rgba(244,63,94,0.25)]";
+          if (agent.flash === "quarantined") {
+            borderClasses += " ring-2 ring-rose-500 shadow-[0_0_40px_rgba(244,63,94,0.6)] animate-pulse";
+          }
+        } else if (agent.flash === "cleared") {
+          borderClasses = "border-emerald-400 ring-2 ring-emerald-400/60 bg-emerald-950/20 shadow-[0_0_25px_rgba(52,211,153,0.35)] transition-all";
+        }
+
+        card.className = `p-5 card-glass transition-all duration-300 border ${borderClasses}`;
 
         card.innerHTML = `
           <div class="flex items-start justify-between mb-3">
             <div>
-              <div class="font-serif text-lg text-white font-medium">${agent.name}</div>
+              <div class="font-serif text-lg text-white font-medium flex items-center gap-2">
+                ${agent.name}
+              </div>
               <div class="font-mono text-[10px] text-neutral-400">${agent.id}</div>
             </div>
             <span class="font-mono text-[10px] px-2 py-0.5 uppercase tracking-wider ${
               isQuarantined
-                ? "bg-rose-500/20 text-rose-400 border border-rose-500/30 font-bold"
-                : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-            }">${agent.status}</span>
+                ? "bg-rose-500/25 text-rose-300 border border-rose-500/50 font-bold flex items-center gap-1.5 animate-pulse"
+                : "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-bold flex items-center gap-1.5"
+            }">
+              <span class="w-1.5 h-1.5 rounded-full ${isQuarantined ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}"></span>
+              ${agent.status}
+            </span>
           </div>
 
-          <div class="space-y-1.5 pt-3 border-t border-white/5 font-mono text-xs">
+          <div class="space-y-2 pt-3 border-t border-white/5 font-mono text-xs">
             <div class="flex justify-between text-neutral-400">
               <span>Risk Tier:</span>
               <span class="text-neutral-200">${agent.tier} (${agent.risk})</span>
             </div>
             <div class="flex justify-between text-neutral-400">
               <span>Single-Tx Cap:</span>
-              <span class="text-neutral-200">$${agent.limit.toLocaleString()} USDC</span>
+              <span class="text-neutral-200 font-semibold">$${agent.limit.toLocaleString()} USDC</span>
             </div>
-            <div class="flex justify-between text-neutral-400">
-              <span>Total Volume:</span>
-              <span class="text-emerald-400 font-semibold">$${agent.volume.toLocaleString()}</span>
+
+            <!-- Rolling Hourly Velocity Meter -->
+            <div class="pt-1">
+              <div class="flex justify-between text-[10px] text-neutral-400 mb-1">
+                <span>Rolling 1h Velocity:</span>
+                <span class="${pct > 80 ? 'text-amber-400 font-bold' : 'text-neutral-300'}">$${(agent.currentSpent || 0).toLocaleString()} / $${agent.windowLimit.toLocaleString()} (${pct}%)</span>
+              </div>
+              <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/5">
+                <div class="h-full transition-all duration-500 ${isQuarantined ? 'bg-rose-500' : (pct > 80 ? 'bg-amber-400' : 'bg-purple-500')}" style="width: ${pct}%"></div>
+              </div>
             </div>
-            <div class="flex justify-between text-neutral-400">
-              <span>Cleared Actions:</span>
-              <span class="text-neutral-200">${agent.cleared}</span>
+
+            <div class="flex justify-between text-neutral-400 pt-1">
+              <span>Lifetime Cleared:</span>
+              <span class="text-emerald-400 font-semibold">$${agent.volume.toLocaleString()} (${agent.cleared} txs)</span>
             </div>
+
+            <!-- Real-Time Activity Status / Alert -->
+            ${
+              isQuarantined
+                ? `<div class="mt-2 p-2 rounded bg-rose-950/40 border border-rose-500/40 text-[10px] text-rose-300">
+                     <div class="font-bold flex items-center gap-1.5">🚨 INTERCEPTED: ${agent.quarantineReason || 'ERR_MAX_SINGLE_TX_EXCEEDED'}</div>
+                     <div class="text-[9px] text-neutral-400 mt-0.5">Execution aborted · Zero treasury debit · State reversed</div>
+                     <button onclick="reactivateAgent('${agent.id}')" class="w-full mt-2 py-1.5 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-200 text-[10px] uppercase font-bold tracking-wider transition-colors flex items-center justify-center gap-1.5">
+                       <span>🔄 Pardon & Restore Agent</span>
+                     </button>
+                   </div>`
+                : agent.lastAction
+                ? `<div class="mt-2 p-1.5 rounded bg-emerald-950/20 border border-emerald-500/20 text-[10px] text-emerald-300 flex items-center justify-between">
+                     <span>✓ Last: +$${agent.lastAction.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                     <span class="text-[9px] text-neutral-400">#${agent.lastAction.block} · ${agent.lastAction.latency}ms</span>
+                   </div>
+                   <button onclick="simulateAgentAnomaly('${agent.id}')" class="w-full mt-2 py-1 bg-white/[0.03] hover:bg-rose-500/15 hover:text-rose-300 border border-white/10 hover:border-rose-500/30 text-neutral-400 text-[10px] tracking-wider uppercase font-medium transition-colors">
+                     ⚡ Test Policy Breach
+                   </button>`
+                : `<button onclick="simulateAgentAnomaly('${agent.id}')" class="w-full mt-2 py-1 bg-white/[0.03] hover:bg-rose-500/15 hover:text-rose-300 border border-white/10 hover:border-rose-500/30 text-neutral-400 text-[10px] tracking-wider uppercase font-medium transition-colors">
+                     ⚡ Test Policy Breach
+                   </button>`
+            }
           </div>
         `;
         container.appendChild(card);
       });
+
+      const activeEl = document.getElementById("activeFleetCount");
+      if (activeEl) activeEl.textContent = activeCount;
+      const quarEl = document.getElementById("quarantinedFleetCount");
+      if (quarEl) quarEl.textContent = quarantinedCount;
     }
 
     function addTransactionRow(tx) {
       const stream = document.getElementById("txStream");
+      if (!stream) return;
       const row = document.createElement("div");
       row.className = "grid grid-cols-12 gap-2 px-5 py-3 items-center hover:bg-white/[0.02] transition-colors";
 
       const statusBadge = tx.cleared
         ? `<span class="px-2 py-0.5 text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 font-semibold text-[10px]">CLEARED</span>`
-        : `<span class="px-2 py-0.5 text-rose-400 bg-rose-500/20 border border-rose-500/40 font-bold text-[10px]">QUARANTINED</span>`;
+        : `<span class="px-2 py-0.5 text-rose-400 bg-rose-500/20 border border-rose-500/40 font-bold text-[10px] animate-pulse">QUARANTINED</span>`;
 
       row.innerHTML = `
         <div class="col-span-2">${statusBadge}</div>
@@ -514,22 +621,56 @@
       document.getElementById("heroBlockTicker").textContent = `#${currentBlock.toLocaleString()}`;
 
       const eligible = AGENTS.filter(a => a.status === "Active" && a.id !== "AGENT_ROGUE_99");
-      const count = Math.floor(Math.random() * 2) + 2;
+      if (eligible.length === 0) return;
+
+      const count = Math.min(eligible.length, Math.floor(Math.random() * 2) + 2);
       const round = eligible.sort(() => 0.5 - Math.random()).slice(0, count);
 
       // Execute ALL agent actions concurrently in real parallel pipeline via Promise.all
       const parallelActions = round.map(async (agent) => {
         sequenceCounter++;
         const seq = sequenceCounter;
-        const amount = Math.floor(Math.random() * (agent.limit * 0.6)) + 30;
-        const latency = Math.floor(Math.random() * 32) + 15; // 15ms - 47ms Monad parallel latency
-        const target = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"; // MockDEX
+        const amount = Math.floor(Math.random() * (agent.limit * 0.5)) + 40;
+        const latency = Math.floor(Math.random() * 28) + 16; // 16ms - 44ms Monad parallel slot
+        const target = "0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55"; // MockDEX
+
+        // Check if this action would breach rolling velocity
+        if ((agent.currentSpent || 0) + amount > agent.windowLimit) {
+          // Automatic Real-Time Velocity Quarantine!
+          agent.status = "Quarantined";
+          agent.quarantineReason = "ERR_HOURLY_VELOCITY_BREACHED";
+          agent.flash = "quarantined";
+          totalQuarantined += 1;
+
+          const { receiptHash, preimage } = await computeRealReceiptHash(agent.id, target, amount, currentBlock, false, seq);
+
+          showQuarantineBanner(agent.name, agent.id, `Exceeded rolling hourly velocity limit ($${((agent.currentSpent || 0) + amount).toLocaleString()} > $${agent.windowLimit.toLocaleString()} limit). Deterministically quarantined. Zero treasury loss.`, receiptHash);
+
+          return {
+            cleared: false,
+            agentId: agent.id,
+            agentName: agent.name,
+            amount: amount,
+            latency: latency,
+            receiptHash: receiptHash,
+            preimage: preimage,
+            block: currentBlock
+          };
+        }
 
         // Real Cryptographic Hash from Real Preimage
         const { receiptHash, preimage } = await computeRealReceiptHash(agent.id, target, amount, currentBlock, true, seq);
 
         agent.volume += amount;
+        agent.currentSpent = (agent.currentSpent || 0) + amount;
         agent.cleared += 1;
+        agent.flash = "cleared";
+        agent.lastAction = {
+          amount: amount,
+          block: currentBlock,
+          latency: latency
+        };
+
         totalVolume += amount;
         totalCleared += 1;
 
@@ -550,8 +691,23 @@
 
       updateStats();
       renderFleet();
+
+      // Clear flash animation after 600ms
+      setTimeout(() => {
+        AGENTS.forEach(a => { if (a.flash === 'cleared') a.flash = null; });
+        renderFleet();
+      }, 600);
     }
 
+    function showQuarantineBanner(name, id, reason, hash) {
+      const banner = document.getElementById("quarantineBanner");
+      if (!banner) return;
+      banner.classList.remove("hidden");
+      document.getElementById("quarantineBannerText").textContent = 
+        `Agent ${name} (${id}): ${reason} | Real SHA-256 State Root: ${hash.slice(0, 18)}...`;
+    }
+
+    // Trigger Rogue Flash Drain Attempt
     async function triggerRogueAttack() {
       currentBlock += 1;
       sequenceCounter++;
@@ -559,13 +715,14 @@
 
       const rogue = AGENTS.find(a => a.id === "AGENT_ROGUE_99");
       const maliciousAmount = 85000.00;
-      const latency = 24;
+      const latency = 21;
       const target = "0xdeadbeef11112222333344445555666677778888"; // Rogue unallowlisted target
 
-      // Real Cryptographic Hash for Quarantine Event
       const { receiptHash, preimage } = await computeRealReceiptHash(rogue.id, target, maliciousAmount, currentBlock, false, sequenceCounter);
 
       rogue.status = "Quarantined";
+      rogue.quarantineReason = "ERR_TARGET_NOT_ALLOWLISTED & ERR_MAX_SINGLE_TX_EXCEEDED";
+      rogue.flash = "quarantined";
       totalQuarantined += 1;
 
       addTransactionRow({
@@ -579,12 +736,121 @@
         block: currentBlock
       });
 
-      const banner = document.getElementById("quarantineBanner");
-      banner.classList.remove("hidden");
-      document.getElementById("quarantineBannerText").textContent = 
-        `Agent ${rogue.name} (${rogue.id}) attempted unauthorized execution of $${maliciousAmount.toLocaleString()} (Exceeds Tier 1 $500 cap). Intercepted deterministically. State reversed. Real SHA-256 Receipt: ${receiptHash.slice(0, 18)}...`;
+      showQuarantineBanner(rogue.name, rogue.id, `Unauthorized execution attempt of $${maliciousAmount.toLocaleString()} on unallowlisted target. Firewall intercepted call, reversed state, and quarantined agent. ZERO loss to treasury.`, receiptHash);
 
       updateStats();
+      renderFleet();
+    }
+
+    // Test specific anomaly on any agent
+    async function simulateAgentAnomaly(agentId) {
+      const agent = AGENTS.find(a => a.id === agentId);
+      if (!agent) return;
+
+      currentBlock += 1;
+      sequenceCounter++;
+      document.getElementById("heroBlockTicker").textContent = `#${currentBlock.toLocaleString()}`;
+
+      // Over-limit transaction
+      const overAmount = agent.limit * 4;
+      const latency = 18;
+      const target = "0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55";
+
+      const { receiptHash, preimage } = await computeRealReceiptHash(agent.id, target, overAmount, currentBlock, false, sequenceCounter);
+
+      agent.status = "Quarantined";
+      agent.quarantineReason = `ERR_MAX_SINGLE_TX_EXCEEDED ($${overAmount.toLocaleString()} > $${agent.limit.toLocaleString()} cap)`;
+      agent.flash = "quarantined";
+      totalQuarantined += 1;
+
+      addTransactionRow({
+        cleared: false,
+        agentId: agent.id,
+        agentName: agent.name,
+        amount: overAmount,
+        latency: latency,
+        receiptHash: receiptHash,
+        preimage: preimage,
+        block: currentBlock
+      });
+
+      showQuarantineBanner(agent.name, agent.id, `Single-Tx spending cap breached ($${overAmount.toLocaleString()} > $${agent.limit.toLocaleString()}). Firewall halted transaction. Agent placed into Quarantine.`, receiptHash);
+
+      updateStats();
+      renderFleet();
+    }
+
+    // Test Velocity Breach across Fleet
+    async function testVelocityBreach() {
+      const active = AGENTS.find(a => a.status === "Active" && a.id !== "AGENT_ROGUE_99");
+      if (!active) {
+        alert("No active agents. Click 'Restore All Agents' first.");
+        return;
+      }
+      active.currentSpent = active.windowLimit + 1000;
+      simulateAgentAnomaly(active.id);
+    }
+
+    // Test Unallowlisted Target Breach
+    async function testAllowlistBreach() {
+      const active = AGENTS.find(a => a.status === "Active" && a.id !== "AGENT_ROGUE_99");
+      if (!active) {
+        alert("No active agents. Click 'Restore All Agents' first.");
+        return;
+      }
+
+      currentBlock += 1;
+      sequenceCounter++;
+      document.getElementById("heroBlockTicker").textContent = `#${currentBlock.toLocaleString()}`;
+
+      const maliciousTarget = "0xHackerVault_99999999999999999999999999999999";
+      const amount = 500;
+      const { receiptHash, preimage } = await computeRealReceiptHash(active.id, maliciousTarget, amount, currentBlock, false, sequenceCounter);
+
+      active.status = "Quarantined";
+      active.quarantineReason = "ERR_TARGET_NOT_ALLOWLISTED";
+      active.flash = "quarantined";
+      totalQuarantined += 1;
+
+      addTransactionRow({
+        cleared: false,
+        agentId: active.id,
+        agentName: active.name,
+        amount: amount,
+        latency: 19,
+        receiptHash: receiptHash,
+        preimage: preimage,
+        block: currentBlock
+      });
+
+      showQuarantineBanner(active.name, active.id, `Target contract ${maliciousTarget} is not in the firewall allowlist. Call aborted immediately. Agent quarantined.`, receiptHash);
+
+      updateStats();
+      renderFleet();
+    }
+
+    // Pardon and Restore a Specific Agent
+    function reactivateAgent(agentId) {
+      const agent = AGENTS.find(a => a.id === agentId);
+      if (!agent) return;
+
+      agent.status = "Active";
+      agent.quarantineReason = null;
+      agent.flash = null;
+      agent.currentSpent = Math.floor(agent.windowLimit * 0.2); // reset to 20%
+      renderFleet();
+    }
+
+    // Restore All Quarantined Agents
+    function reactivateAllAgents() {
+      AGENTS.forEach(a => {
+        a.status = "Active";
+        a.quarantineReason = null;
+        a.flash = null;
+        a.currentSpent = Math.floor(a.windowLimit * 0.2);
+      });
+      const banner = document.getElementById("quarantineBanner");
+      if (banner) banner.classList.add("hidden");
       renderFleet();
     }
 
@@ -613,7 +879,7 @@
         statusEl.className = "text-rose-400 font-bold";
       }
 
-      document.getElementById("modalExplorerLink").href = `https://testnet.monadexplorer.com/tx/${hash}`;
+      document.getElementById("modalExplorerLink").href = `https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25`;
       document.getElementById("receiptModal").classList.remove("hidden");
     }
 
@@ -646,12 +912,12 @@
         clearInterval(intervalId);
         isRunning = false;
         burstBtnText.textContent = "INITIATE PARALLEL BURST";
-        toggleBtn.className = "px-6 py-3 rounded-none bg-white text-black hover:bg-neutral-200 transition-all font-mono text-xs uppercase tracking-wider font-semibold flex items-center gap-2 shadow-lg";
+        toggleBtn.className = "px-6 py-3 rounded-none bg-white text-black hover:bg-neutral-200 transition-all font-mono text-xs uppercase tracking-wider font-semibold flex items-center gap-2 shadow-lg hover:scale-[1.02] active:scale-[0.98]";
       } else {
         intervalId = setInterval(generateBurst, 1000);
         isRunning = true;
         burstBtnText.textContent = "PAUSE EXECUTION BURST";
-        toggleBtn.className = "px-6 py-3 rounded-none bg-amber-400 text-black hover:bg-amber-300 transition-all font-mono text-xs uppercase tracking-wider font-semibold flex items-center gap-2 shadow-lg";
+        toggleBtn.className = "px-6 py-3 rounded-none bg-amber-400 text-black hover:bg-amber-300 transition-all font-mono text-xs uppercase tracking-wider font-semibold flex items-center gap-2 shadow-lg hover:scale-[1.02] active:scale-[0.98]";
       }
     });
 
@@ -659,7 +925,7 @@
 
     // Initial Seeding
     renderFleet();
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 4; i++) {
       generateBurst();
     }
   </script>
