@@ -20,6 +20,7 @@ const MIME_TYPES = {
 const server = http.createServer((req, res) => {
   let reqPath = req.url.split("?")[0];
   if (reqPath === "/") reqPath = "/index.html";
+  if (reqPath === "/docs" || reqPath === "/docs/") reqPath = "/docs.html";
 
   const filePath = path.join(DASHBOARD_DIR, reqPath);
   const ext = path.extname(filePath).toLowerCase();
@@ -43,6 +44,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`\n⚡ PulseGrid Neoclassical Interface server active at: http://localhost:${PORT}`);
-  console.log(`Serving static assets from: ${DASHBOARD_DIR}`);
+  console.log(`\n⚡ PulseGrid Server active at: http://localhost:${PORT}`);
+  console.log(`- Dashboard: http://localhost:${PORT}/`);
+  console.log(`- Docs:      http://localhost:${PORT}/docs`);
 });
