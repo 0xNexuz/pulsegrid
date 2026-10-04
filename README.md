@@ -4,7 +4,22 @@
 > **Live Production Dashboard:** [https://pulsegrid-phi.vercel.app](https://pulsegrid-phi.vercel.app)  
 > **Interactive Documentation:** [https://pulsegrid-phi.vercel.app/docs](https://pulsegrid-phi.vercel.app/docs)  
 > **GitHub Repository:** [https://github.com/0xNexuz/pulsegrid](https://github.com/0xNexuz/pulsegrid)  
-> **Target Network:** Monad Parallel EVM (Chain ID: 143 · 10,000 TPS · 1-Second Block Time · Single-Slot Finality)
+> **Deployed Network:** Monad Testnet (Chain ID: 10143 · 10,000 TPS · 1-Second Block Time · Single-Slot Finality)  
+> **Deployer Address:** [`0x4203A9A0bF96d007939eBFD08b33c23AD7DE1683`](https://testnet.monadscan.com/address/0x4203A9A0bF96d007939eBFD08b33c23AD7DE1683)
+
+---
+
+## 🟣 Live Monad Testnet Deployed Contracts (Chain ID: 10143)
+
+All PulseGrid protocol contracts are deployed and verified live on **Monad Testnet**:
+
+| Contract Name | Deployed Onchain Address | MonadScan Explorer Link | Description |
+| :--- | :--- | :--- | :--- |
+| **`PulseGridClearing`** | `0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25) | High-throughput concurrent execution mesh & receipt issuer |
+| **`PulseGridFirewall`** | `0x0003d9b81E576f2a732b96b7d476C74459e99091` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0x0003d9b81E576f2a732b96b7d476C74459e99091) | Deterministic risk policy engine & rolling velocity limiter |
+| **`PulseGridRegistry`** | `0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a) | Autonomous agent identity registry & risk tier state machine |
+| **`MockDEX`** | `0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55) | Allowlisted simulated orderbook & trade venue |
+| **`MockUSDC`** | `0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52) | Settlement token asset |
 
 ---
 

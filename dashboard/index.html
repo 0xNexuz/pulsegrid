@@ -86,9 +86,9 @@
     <!-- Right Network Indicator -->
     <div class="hidden sm:flex items-center gap-4 text-xs font-mono tracking-wider">
       <span class="text-neutral-400 uppercase">NETWORK</span>
-      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-200">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        MONAD · 143 · 1-SEC FINALITY
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/40 border border-purple-500/40 text-purple-200">
+        <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
+        MONAD TESTNET · 10143 · LIVE CONTRACTS
       </span>
     </div>
   </header>
@@ -335,13 +335,55 @@
         </div>
 
         <div class="pt-1">
-          <a id="modalExplorerLink" href="https://testnet.monadexplorer.com" target="_blank" class="block w-full py-2.5 bg-white text-black font-mono uppercase text-xs tracking-wider text-center font-bold hover:bg-neutral-200 transition-colors">
-            INSPECT ON MONAD EXPLORER ↗
+          <a id="modalExplorerLink" href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="block w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-mono uppercase text-xs tracking-wider text-center font-bold transition-colors">
+            INSPECT CLEARING CONTRACT ON MONADSCAN ↗
           </a>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Live Verified Monad Testnet Contracts Banner -->
+  <section class="relative z-20 border-t border-white/10 bg-white/[0.01] py-8 px-8 md:px-16 text-xs font-mono">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
+        <div class="flex items-center gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"></span>
+          <span class="text-white font-bold text-sm tracking-wider uppercase">Live Onchain Deployment · Monad Testnet (Chain ID: 10143)</span>
+        </div>
+        <div class="text-neutral-400 text-xs">
+          Deployer: <a href="https://testnet.monadscan.com/address/0x4203A9A0bF96d007939eBFD08b33c23AD7DE1683" target="_blank" class="text-purple-400 hover:underline">0x4203A9A0bF96d007939eBFD08b33c23AD7DE1683 ↗</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 text-[11px]">
+        <a href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="p-3 bg-white/[0.03] border border-white/10 hover:border-purple-500/50 transition-all group">
+          <span class="text-neutral-500 block text-[10px] uppercase">ClearingHouse</span>
+          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate">0xF691...7f25</span>
+          <span class="text-purple-400 text-[10px] mt-1 block">Inspect On MonadScan ↗</span>
+        </a>
+        <a href="https://testnet.monadscan.com/address/0x0003d9b81E576f2a732b96b7d476C74459e99091" target="_blank" class="p-3 bg-white/[0.03] border border-white/10 hover:border-purple-500/50 transition-all group">
+          <span class="text-neutral-500 block text-[10px] uppercase">Firewall Policy</span>
+          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate">0x0003...9091</span>
+          <span class="text-purple-400 text-[10px] mt-1 block">Inspect On MonadScan ↗</span>
+        </a>
+        <a href="https://testnet.monadscan.com/address/0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a" target="_blank" class="p-3 bg-white/[0.03] border border-white/10 hover:border-purple-500/50 transition-all group">
+          <span class="text-neutral-500 block text-[10px] uppercase">Agent Registry</span>
+          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate">0x904A...E63a</span>
+          <span class="text-purple-400 text-[10px] mt-1 block">Inspect On MonadScan ↗</span>
+        </a>
+        <a href="https://testnet.monadscan.com/address/0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55" target="_blank" class="p-3 bg-white/[0.03] border border-white/10 hover:border-purple-500/50 transition-all group">
+          <span class="text-neutral-500 block text-[10px] uppercase">MockDEX Venue</span>
+          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate">0xA3E4...4A55</span>
+          <span class="text-purple-400 text-[10px] mt-1 block">Inspect On MonadScan ↗</span>
+        </a>
+        <a href="https://testnet.monadscan.com/address/0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52" target="_blank" class="p-3 bg-white/[0.03] border border-white/10 hover:border-purple-500/50 transition-all group">
+          <span class="text-neutral-500 block text-[10px] uppercase">MockUSDC Asset</span>
+          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate">0x3777...Aa52</span>
+          <span class="text-purple-400 text-[10px] mt-1 block">Inspect On MonadScan ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="relative z-20 border-t border-white/10 py-8 px-8 md:px-16 text-xs text-neutral-500 font-mono">
@@ -352,7 +394,7 @@
         <span>•</span>
         <span>Deterministic Firewall</span>
         <span>•</span>
-        <span>10,000 TPS Target</span>
+        <span>Chain ID: 10143</span>
       </div>
     </div>
   </footer>

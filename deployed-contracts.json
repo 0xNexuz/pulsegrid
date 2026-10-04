@@ -1,0 +1,14 @@
+{
+  "network": "monadTestnet",
+  "chainId": 10143,
+  "deployedAt": "2026-10-04T19:31:22.980Z",
+  "deployer": "0x4203A9A0bF96d007939eBFD08b33c23AD7DE1683",
+  "explorer": "https://testnet.monadscan.com",
+  "contracts": {
+    "PulseGridRegistry": "0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a",
+    "PulseGridFirewall": "0x0003d9b81E576f2a732b96b7d476C74459e99091",
+    "PulseGridClearing": "0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25",
+    "MockUSDC": "0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52",
+    "MockDEX": "0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55"
+  }
+}
