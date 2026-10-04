@@ -1,8 +1,6 @@
-# ⚡ PulseGrid: High-Frequency Autonomous Agent Risk Firewall & Clearing Mesh
+#  PulseGrid: High-Frequency Autonomous Agent Risk Firewall & Clearing Mesh
 
-> **Built for the Monad Metropolis Hackathon ($250,000+ Prize Pool)**  
-> **Primary Track:** Trust, Identity, and AI Infrastructure  
-> **Secondary Track:** Onchain Finance & Trading  
+> **Built for the Monad Metropolis Hackathon**  
 > **Live Production Dashboard:** [https://pulsegrid-phi.vercel.app](https://pulsegrid-phi.vercel.app)  
 > **Interactive Documentation:** [https://pulsegrid-phi.vercel.app/docs](https://pulsegrid-phi.vercel.app/docs)  
 > **GitHub Repository:** [https://github.com/0xNexuz/pulsegrid](https://github.com/0xNexuz/pulsegrid)  
@@ -10,7 +8,7 @@
 
 ---
 
-## 💡 Overview
+##  Overview
 
 As autonomous AI agents execute high-frequency arbitrage, perp hedging, and automated liquidation onchain, they operate at millisecond velocities far exceeding human oversight. A single prompt injection, parameter hallucination, or private key leak can drain an entire multi-million dollar agent treasury in seconds before traditional risk dashboards can even render an alert.
 
@@ -65,7 +63,7 @@ Unlike cosmetic demos that simulate delays using static timers or generate pseud
 
 ---
 
-## 🚀 Why Monad is Load-Bearing
+##  Why Monad is Load-Bearing
 
 On conventional EVM networks (Ethereum, Arbitrum, Base), executing high-frequency risk evaluations and clearing dozens of concurrent agent actions sequentially creates:
 1. **State Lock Contention:** Sequential execution locks state, causing dramatic latency spikes.
@@ -79,7 +77,7 @@ On conventional EVM networks (Ethereum, Arbitrum, Base), executing high-frequenc
 
 ---
 
-## 📦 Project Structure
+##  Project Structure
 
 ```
 pulsegrid/
@@ -111,7 +109,7 @@ pulsegrid/
 
 ---
 
-## 🧪 Verification & Test Suite (12 / 12 Passing)
+##  Verification & Test Suite (12 / 12 Passing)
 
 PulseGrid includes an exhaustive, zero-dependency specification test suite (`test/run-tests.js`) that validates every protocol invariant, edge-case exception, and threat vector.
 
@@ -154,7 +152,7 @@ node test/run-tests.js
 
 ---
 
-## 🚨 Documented Error Reference & Failure Modes
+##  Documented Error Reference & Failure Modes
 
 PulseGrid defines explicit, deterministic error codes for all security and policy violations. Below is the comprehensive error taxonomy:
 
@@ -171,7 +169,7 @@ PulseGrid defines explicit, deterministic error codes for all security and polic
 
 ---
 
-## ⚡ Quickstart Guide
+##  Quickstart Guide
 
 ### 1. Run Specification Unit Tests
 Verify all policy rules, velocity windows, reentrancy guards, and quarantine transitions:
@@ -195,12 +193,6 @@ node server.js
 
 ---
 
-## 🎮 90-Second Judge Demonstration Script
-
-1. **The Context (0:00–0:20):** Explain the danger of unmonitored AI agents executing onchain at machine speed and the risk of treasury drain.
-2. **Parallel Velocity (0:20–0:50):** Click **"Start Continuous Burst"**. Show 5 agents concurrently settling trades every second on Monad with sub-45ms latency and live verifiable SHA-256 receipts.
-3. **The Breakthrough Moment (0:50–1:15):** Click **"🚨 Trigger Rogue Agent Anomaly"**. Watch Agent #6 attempt an unauthorized \$85,000 drain. The onchain firewall deterministically blocks the execution, reverses state, and flags the agent as `QUARANTINED` in real time with zero treasury loss.
-4. **Verifiable Audit (1:15–1:30):** Click on the transaction receipt to inspect the cryptographic state root and click **"Live Re-verify Hash"** to prove the SHA-256 hash matches the exact raw preimage.
 
 ---
 
