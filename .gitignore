@@ -1,0 +1,7 @@
+node_modules/
+.vercel/
+cache/
+artifacts/
+.env
+.DS_Store
+Thumbs.db

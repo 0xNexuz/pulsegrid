@@ -1,0 +1,8 @@
+{
+  "name": "pulsegrid",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/hero-statue.jpg", "destination": "/dashboard/hero-statue.jpg" },
+    { "source": "/(.*)", "destination": "/dashboard/index.html" }
+  ]
+}

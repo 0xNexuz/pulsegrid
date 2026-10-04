@@ -1,0 +1,29 @@
+{
+  "name": "pulsegrid",
+  "version": "1.0.0",
+  "description": "High-Frequency Autonomous Agent Risk Firewall and Clearing Mesh for Monad",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "simulate": "node agent-fleet/fleet-simulator.js",
+    "deploy:monad": "hardhat run scripts/deploy.js --network monadTestnet"
+  },
+  "keywords": [
+    "monad",
+    "ai-agents",
+    "firewall",
+    "risk-engine",
+    "clearinghouse",
+    "parallel-evm"
+  ],
+  "author": "PulseGrid Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.18"
+  },
+  "dependencies": {
+    "ethers": "^6.13.5"
+  }
+}

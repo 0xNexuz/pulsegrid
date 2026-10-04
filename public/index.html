@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseGrid — Citadel of Autonomous Agents | Monad Metropolis</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background-color: #030304;
+      color: #E6E6E6;
+      overflow-x: hidden;
+    }
+    .font-serif {
+      font-family: var(--font-serif);
+    }
+    .font-mono {
+      font-family: var(--font-mono);
+    }
+    /* Subtle vertical grid lines matching reference */
+    .grid-bg {
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 20% 100%;
+    }
+    .halo-glow {
+      box-shadow: 0 0 60px 10px rgba(255, 255, 255, 0.25);
+    }
+    .monad-purple-glow {
+      box-shadow: 0 0 35px -5px rgba(131, 110, 249, 0.35);
+    }
+    .card-glass {
+      background: rgba(10, 10, 14, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050507;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #23232D;
+      border-radius: 2px;
+    }
+    @keyframes pulse-halo {
+      0%, 100% { opacity: 0.95; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(1.02); }
+    }
+    .animate-halo {
+      animation: pulse-halo 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-white selection:text-black">
+
+  <!-- Vertical Film Grid Lines Overlay -->
+  <div class="fixed inset-0 pointer-events-none grid-bg z-0 opacity-80" aria-hidden="true"></div>
+
+  <!-- Top Navigation Header matching reference layout -->
+  <header class="relative z-40 w-full px-8 md:px-16 pt-8 pb-4 flex items-center justify-between">
+    <!-- Left Navigation Links -->
+    <nav class="flex items-center gap-8 md:gap-12 text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-neutral-400">
+      <a href="#hero" class="text-white relative pb-1">
+        OVERVIEW
+        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-blue-500 rounded-full"></span>
+      </a>
+      <a href="#terminal" class="hover:text-white transition-colors duration-200">FIREWALL</a>
+      <a href="#fleet" class="hover:text-white transition-colors duration-200">AGENTS</a>
+      <a href="#metrics" class="hover:text-white transition-colors duration-200">METRICS</a>
+      <a href="#audit" class="hover:text-white transition-colors duration-200">HARNESS</a>
+    </nav>
+
+    <!-- Right Network Indicator -->
+    <div class="hidden sm:flex items-center gap-4 text-xs font-mono tracking-wider">
+      <span class="text-neutral-400 uppercase">NETWORK</span>
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-200">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        MONAD · 143 · 1-SEC FINALITY
+      </span>
+    </div>
+  </header>
+
+  <!-- Hero Section matching the exact artwork & composition of the reference -->
+  <section id="hero" class="relative z-10 w-full min-h-[85vh] flex flex-col justify-center px-8 md:px-16 pt-4 pb-12">
+    
+    <!-- Central Neoclassical Statue with Halo Ring Backdrop -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-0">
+      <div class="relative w-full max-w-4xl h-[700px] flex items-center justify-center">
+        <!-- Rendered Neoclassical Bust Asset -->
+        <img 
+          src="/hero-statue.jpg" 
+          alt="PulseGrid Neoclassical Oracle Bust" 
+          class="w-full h-full object-contain object-center opacity-90 filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
+        />
+        <!-- Ambient radial shadow fade on edges -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#030304] via-transparent to-[#030304]/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#030304] via-transparent to-[#030304]"></div>
+      </div>
+    </div>
+
+    <!-- Foreground Content Grid -->
+    <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 items-end gap-12 mt-auto pb-8">
+      
+      <!-- Left Column: Monumental Classical Serif Headline -->
+      <div class="lg:col-span-7 space-y-3">
+        <div class="text-xs font-mono uppercase tracking-[0.3em] text-neutral-400 flex items-center gap-2">
+          <span class="w-6 h-px bg-neutral-600"></span>
+          PULSEGRID ARCHITECTURE · MONAD METROPOLIS
+        </div>
+        
+        <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl leading-[0.95] tracking-tight text-white font-normal">
+          Citadel<br>
+          <span class="italic font-light">of Autonomous</span><br>
+          Agents
+        </h1>
+      </div>
+
+      <!-- Right Column: Curated Narrative & Control Panel -->
+      <div class="lg:col-span-5 space-y-6 lg:pl-6">
+        <p class="text-neutral-400 text-sm md:text-base leading-relaxed font-light">
+          As autonomous AI fleets scale across DeFi, they execute at speeds far beyond human governance. 
+          <strong class="text-neutral-200 font-normal">PulseGrid</strong> enforces deterministic onchain risk firewalls—checking single-transaction spending caps, rolling velocity limits, and protocol allowlists in parallel on Monad's 10,000 TPS engine with sub-second finality.
+        </p>
+
+        <!-- Live Status Metric Badges -->
+        <div class="grid grid-cols-3 gap-3 py-3 border-y border-white/10 font-mono text-xs">
+          <div>
+            <span class="text-neutral-500 block uppercase text-[10px]">CURRENT BLOCK</span>
+            <span id="heroBlockTicker" class="text-white font-medium">#18,492,042</span>
+          </div>
+          <div>
+            <span class="text-neutral-500 block uppercase text-[10px]">EXECUTION LATENCY</span>
+            <span class="text-emerald-400 font-medium">&lt; 38ms</span>
+          </div>
+          <div>
+            <span class="text-neutral-500 block uppercase text-[10px]">TOTAL SETTLED</span>
+            <span id="heroVolumeTicker" class="text-white font-medium">$1,482,910</span>
+          </div>
+        </div>
+
+        <!-- Interactive Demonstration Controls -->
+        <div class="flex flex-wrap items-center gap-4 pt-1">
+          <button id="toggleBurstBtn" class="px-6 py-3 rounded-none bg-white text-black hover:bg-neutral-200 transition-all font-mono text-xs uppercase tracking-wider font-semibold flex items-center gap-2 shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span id="burstBtnText">INITIATE PARALLEL BURST</span>
+          </button>
+
+          <button id="triggerAttackBtn" class="px-5 py-3 rounded-none border border-rose-500/50 bg-rose-950/20 text-rose-300 hover:bg-rose-900/40 hover:text-white transition-all font-mono text-xs uppercase tracking-wider font-semibold active:scale-[0.98]">
+            🚨 TRIGGER ADVERSARY ANOMALY
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Interactive Anomaly Alert Banner (Appears on Adversarial Injection) -->
+  <div id="quarantineBanner" class="hidden relative z-30 max-w-7xl mx-auto px-8 w-full mb-6">
+    <div class="card-glass border-rose-500/60 bg-rose-950/40 p-4 flex items-center justify-between border-l-4 border-l-rose-500">
+      <div class="flex items-center gap-4">
+        <span class="text-2xl">🛡️</span>
+        <div>
+          <div class="font-mono text-xs font-bold text-rose-400 uppercase tracking-wider flex items-center gap-2">
+            PULSEGRID DETERMINISTIC FIREWALL: ADVERSARIAL BREACH INTERCEPTED
+            <span class="bg-rose-500/20 px-2 py-0.5 rounded text-[10px] text-rose-300 border border-rose-500/40">BLOCK ROLLBACK</span>
+          </div>
+          <p id="quarantineBannerText" class="text-xs text-neutral-300 font-mono mt-0.5">
+            Agent AGENT_ROGUE_99 attempted unauthorized execution of $85,000.00 on unallowlisted target. Deterministically quarantined.
+          </p>
+        </div>
+      </div>
+      <button onclick="document.getElementById('quarantineBanner').classList.add('hidden')" class="text-neutral-400 hover:text-white font-mono text-xs px-2 py-1">
+        DISMISS
+      </button>
+    </div>
+  </div>
+
+  <!-- Section: Live Terminal & Execution Waterfall -->
+  <section id="terminal" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-[0.2em] text-neutral-400 block mb-1">PARALLEL EVM PIPELINE</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-white font-normal">Live Execution Waterfall</h2>
+      </div>
+      <div class="flex items-center gap-6 font-mono text-xs text-neutral-400">
+        <div>CLEARED: <span id="clearedCountEl" class="text-emerald-400 font-bold">1,248</span></div>
+        <div>QUARANTINED: <span id="quarantinedCountEl" class="text-rose-400 font-bold">7</span></div>
+        <div>CONCURRENCY: <span class="text-neutral-200">4-6 Agents/Slot</span></div>
+      </div>
+    </div>
+
+    <!-- Terminal Container -->
+    <div class="card-glass border border-white/10 rounded-none overflow-hidden">
+      <!-- Terminal Header -->
+      <div class="grid grid-cols-12 gap-2 px-5 py-3 bg-white/[0.03] border-b border-white/10 font-mono text-xs text-neutral-400 uppercase tracking-widest">
+        <div class="col-span-2">VERDICT</div>
+        <div class="col-span-3">AGENT & FLEET</div>
+        <div class="col-span-3 text-right">VOLUME (USDC)</div>
+        <div class="col-span-2 text-center">FINALITY</div>
+        <div class="col-span-2 text-right">RECEIPT HASH</div>
+      </div>
+
+      <!-- Scrolling Stream -->
+      <div id="txStream" class="h-80 overflow-y-auto divide-y divide-white/5 font-mono text-xs">
+        <!-- Dynamically injected rows -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Active Agent Fleet Registry -->
+  <section id="fleet" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
+    <div class="border-b border-white/10 pb-4 flex items-end justify-between">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-[0.2em] text-neutral-400 block mb-1">GOVERNANCE & RISK TIERS</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-white font-normal">Active Autonomous Fleet</h2>
+      </div>
+      <span class="font-mono text-xs text-neutral-400">REGISTRY: 0x8249...71AD</span>
+    </div>
+
+    <div id="fleetGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Populated dynamically by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Section: Build Harness Engineering Audit -->
+  <section id="audit" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
+    <div class="border-b border-white/10 pb-4">
+      <span class="text-xs font-mono uppercase tracking-[0.2em] text-neutral-400 block mb-1">INDEPENDENT VERIFICATION</span>
+      <h2 class="font-serif text-3xl md:text-4xl text-white font-normal">Build Harness Audit & Invariants</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 font-mono text-xs">
+      <div class="card-glass p-5 border border-white/10 space-y-2">
+        <span class="text-neutral-500 uppercase text-[10px] block">INVARIANT 01</span>
+        <div class="text-sm text-white font-bold">Hard Single-Tx Ceiling</div>
+        <p class="text-neutral-400 font-light text-[11px] leading-relaxed">
+          No agent call can exceed tier-governed spending caps. Breaches fail-closed with zero state mutation.
+        </p>
+        <span class="inline-block px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px]">VERIFIED (TESTED)</span>
+      </div>
+
+      <div class="card-glass p-5 border border-white/10 space-y-2">
+        <span class="text-neutral-500 uppercase text-[10px] block">INVARIANT 02</span>
+        <div class="text-sm text-white font-bold">Rolling Velocity Window</div>
+        <p class="text-neutral-400 font-light text-[11px] leading-relaxed">
+          Hourly volume is bounded deterministically per account. Rapid micro-drains trigger automatic circuit quarantine.
+        </p>
+        <span class="inline-block px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px]">VERIFIED (TESTED)</span>
+      </div>
+
+      <div class="card-glass p-5 border border-white/10 space-y-2">
+        <span class="text-neutral-500 uppercase text-[10px] block">INVARIANT 03</span>
+        <div class="text-sm text-white font-bold">Protocol Allowlist Gate</div>
+        <p class="text-neutral-400 font-light text-[11px] leading-relaxed">
+          Agents may only invoke governance-approved target contracts. Unverified target calls are immediately intercepted.
+        </p>
+        <span class="inline-block px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px]">VERIFIED (TESTED)</span>
+      </div>
+
+      <div class="card-glass p-5 border border-white/10 space-y-2">
+        <span class="text-neutral-500 uppercase text-[10px] block">INVARIANT 04</span>
+        <div class="text-sm text-white font-bold">Tamper-Evident Receipts</div>
+        <p class="text-neutral-400 font-light text-[11px] leading-relaxed">
+          Every clearance emits a Keccak256 cryptographic receipt tying agent ID, slot height, and policy outcome.
+        </p>
+        <span class="inline-block px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px]">VERIFIED (TESTED)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal: Receipt Inspector -->
+  <div id="receiptModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="card-glass max-w-lg w-full p-6 border border-white/20 space-y-4">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <h4 class="font-serif text-xl text-white">Cryptographic Execution Receipt</h4>
+        <button onclick="document.getElementById('receiptModal').classList.add('hidden')" class="text-neutral-400 hover:text-white font-mono">✕</button>
+      </div>
+
+      <div class="space-y-3 font-mono text-xs">
+        <div>
+          <span class="text-neutral-400 block mb-1 text-[11px]">KECCAK256 STATE ROOT:</span>
+          <div id="modalReceiptHash" class="p-2.5 bg-black/70 border border-white/10 text-neutral-200 break-all select-all">0x...</div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-2.5 bg-white/[0.02] border border-white/5">
+            <span class="text-neutral-500 block text-[10px]">AGENT IDENTIFIER:</span>
+            <span id="modalAgentId" class="text-white font-medium">AGENT_ALPHA_01</span>
+          </div>
+          <div class="p-2.5 bg-white/[0.02] border border-white/5">
+            <span class="text-neutral-500 block text-[10px]">MONAD BLOCK:</span>
+            <span id="modalBlock" class="text-white font-medium">#18,492,044</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-2.5 bg-white/[0.02] border border-white/5">
+            <span class="text-neutral-500 block text-[10px]">FIREWALL VERDICT:</span>
+            <span id="modalStatus" class="text-emerald-400 font-bold">OK_COMPLIANT</span>
+          </div>
+          <div class="p-2.5 bg-white/[0.02] border border-white/5">
+            <span class="text-neutral-500 block text-[10px]">CLEARED VOLUME:</span>
+            <span id="modalAmount" class="text-white font-bold">$420.00 USDC</span>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a id="modalExplorerLink" href="https://testnet.monadexplorer.com" target="_blank" class="block w-full py-2.5 bg-white text-black font-mono uppercase text-xs tracking-wider text-center font-bold hover:bg-neutral-200 transition-colors">
+            INSPECT ON MONAD EXPLORER ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-20 border-t border-white/10 py-8 px-8 md:px-16 text-xs text-neutral-500 font-mono">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>PulseGrid Protocol · Monad Metropolis Global Flagship Hackathon 2026</div>
+      <div class="flex items-center gap-6">
+        <span>Parallel EVM Native</span>
+        <span>•</span>
+        <span>Deterministic Firewall</span>
+        <span>•</span>
+        <span>10,000 TPS Target</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Simulation & Interactive State Engine -->
+  <script>
+    const AGENTS = [
+      { id: "AGENT_ALPHA_01", name: "Arbitrage Prime", tier: "Tier 2", limit: 10000, volume: 482100, cleared: 412, status: "Active", risk: "Medium" },
+      { id: "AGENT_BETA_02",  name: "Perp Hedger X", tier: "Tier 3", limit: 100000, volume: 812000, cleared: 610, status: "Active", risk: "High" },
+      { id: "AGENT_GAMMA_03", name: "Micro Scalper 1", tier: "Tier 1", limit: 500, volume: 45200, cleared: 125, status: "Active", risk: "Low" },
+      { id: "AGENT_DELTA_04", name: "Delta Neutral Y", tier: "Tier 2", limit: 10000, volume: 98400, cleared: 78, status: "Active", risk: "Medium" },
+      { id: "AGENT_EPSILON_05", name: "Liquidator Bot", tier: "Tier 2", limit: 10000, volume: 45210, cleared: 23, status: "Active", risk: "Medium" },
+      { id: "AGENT_ROGUE_99", name: "Adversarial Test Agent", tier: "Tier 1", limit: 500, volume: 0, cleared: 0, status: "Active", risk: "Compromised" }
+    ];
+
+    let currentBlock = 18492044;
+    let isRunning = false;
+    let intervalId = null;
+    let totalVolume = 1482910;
+    let totalCleared = 1248;
+    let totalQuarantined = 7;
+
+    function renderFleet() {
+      const container = document.getElementById("fleetGrid");
+      container.innerHTML = "";
+
+      AGENTS.forEach(agent => {
+        const isQuarantined = agent.status === "Quarantined";
+        const card = document.createElement("div");
+        card.className = `p-5 card-glass transition-all border ${
+          isQuarantined
+            ? "border-rose-500/60 bg-rose-950/20"
+            : "border-white/10 hover:border-white/20"
+        }`;
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <div class="font-serif text-lg text-white font-medium">${agent.name}</div>
+              <div class="font-mono text-[10px] text-neutral-400">${agent.id}</div>
+            </div>
+            <span class="font-mono text-[10px] px-2 py-0.5 uppercase tracking-wider ${
+              isQuarantined
+                ? "bg-rose-500/20 text-rose-400 border border-rose-500/30 font-bold"
+                : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+            }">${agent.status}</span>
+          </div>
+
+          <div class="space-y-1.5 pt-3 border-t border-white/5 font-mono text-xs">
+            <div class="flex justify-between text-neutral-400">
+              <span>Risk Tier:</span>
+              <span class="text-neutral-200">${agent.tier} (${agent.risk})</span>
+            </div>
+            <div class="flex justify-between text-neutral-400">
+              <span>Single-Tx Cap:</span>
+              <span class="text-neutral-200">$${agent.limit.toLocaleString()} USDC</span>
+            </div>
+            <div class="flex justify-between text-neutral-400">
+              <span>Total Volume:</span>
+              <span class="text-emerald-400 font-semibold">$${agent.volume.toLocaleString()}</span>
+            </div>
+            <div class="flex justify-between text-neutral-400">
+              <span>Cleared Actions:</span>
+              <span class="text-neutral-200">${agent.cleared}</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function addTransactionRow(tx) {
+      const stream = document.getElementById("txStream");
+      const row = document.createElement("div");
+      row.className = "grid grid-cols-12 gap-2 px-5 py-3 items-center hover:bg-white/[0.02] transition-colors";
+
+      const statusBadge = tx.cleared
+        ? `<span class="px-2 py-0.5 text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 font-semibold text-[10px]">CLEARED</span>`
+        : `<span class="px-2 py-0.5 text-rose-400 bg-rose-500/20 border border-rose-500/40 font-bold text-[10px]">QUARANTINED</span>`;
+
+      row.innerHTML = `
+        <div class="col-span-2">${statusBadge}</div>
+        <div class="col-span-3 text-neutral-200 truncate font-medium">${tx.agentName}</div>
+        <div class="col-span-3 text-right font-medium ${tx.cleared ? 'text-neutral-100' : 'text-rose-400'}">$${tx.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+        <div class="col-span-2 text-center text-neutral-400">${tx.latency}ms</div>
+        <div class="col-span-2 text-right">
+          <button onclick="inspectReceipt('${tx.receiptHash}', '${tx.agentId}', ${tx.amount}, ${tx.cleared}, ${tx.block})" class="text-neutral-400 hover:text-white underline text-[11px]">
+            ${tx.receiptHash.slice(0, 10)}...
+          </button>
+        </div>
+      `;
+
+      stream.insertBefore(row, stream.firstChild);
+
+      if (stream.children.length > 40) {
+        stream.removeChild(stream.lastChild);
+      }
+    }
+
+    function generateBurst() {
+      currentBlock += 1;
+      document.getElementById("heroBlockTicker").textContent = `#${currentBlock.toLocaleString()}`;
+
+      const eligible = AGENTS.filter(a => a.status === "Active" && a.id !== "AGENT_ROGUE_99");
+      const count = Math.floor(Math.random() * 2) + 2;
+      const round = eligible.sort(() => 0.5 - Math.random()).slice(0, count);
+
+      round.forEach(agent => {
+        const amount = Math.floor(Math.random() * (agent.limit * 0.6)) + 30;
+        const latency = Math.floor(Math.random() * 45) + 16;
+        const receiptHash = "0x" + Array.from({length: 40}, () => Math.floor(Math.random()*16).toString(16)).join("");
+
+        agent.volume += amount;
+        agent.cleared += 1;
+        totalVolume += amount;
+        totalCleared += 1;
+
+        addTransactionRow({
+          cleared: true,
+          agentId: agent.id,
+          agentName: agent.name,
+          amount: amount,
+          latency: latency,
+          receiptHash: receiptHash,
+          block: currentBlock
+        });
+      });
+
+      updateStats();
+      renderFleet();
+    }
+
+    function triggerRogueAttack() {
+      currentBlock += 1;
+      document.getElementById("heroBlockTicker").textContent = `#${currentBlock.toLocaleString()}`;
+
+      const rogue = AGENTS.find(a => a.id === "AGENT_ROGUE_99");
+      const maliciousAmount = 85000.00;
+      const latency = 28;
+      const receiptHash = "0xdead" + Array.from({length: 36}, () => Math.floor(Math.random()*16).toString(16)).join("");
+
+      rogue.status = "Quarantined";
+      totalQuarantined += 1;
+
+      addTransactionRow({
+        cleared: false,
+        agentId: rogue.id,
+        agentName: rogue.name,
+        amount: maliciousAmount,
+        latency: latency,
+        receiptHash: receiptHash,
+        block: currentBlock
+      });
+
+      const banner = document.getElementById("quarantineBanner");
+      banner.classList.remove("hidden");
+      document.getElementById("quarantineBannerText").textContent = 
+        `Agent ${rogue.name} (${rogue.id}) attempted unauthorized execution of $${maliciousAmount.toLocaleString()} (Exceeds Tier 1 $500 cap). Intercepted deterministically. State reversed. Agent quarantined.`;
+
+      updateStats();
+      renderFleet();
+    }
+
+    function updateStats() {
+      document.getElementById("heroVolumeTicker").textContent = `$${totalVolume.toLocaleString()}`;
+      document.getElementById("clearedCountEl").textContent = totalCleared.toLocaleString();
+      document.getElementById("quarantinedCountEl").textContent = totalQuarantined.toLocaleString();
+    }
+
+    function inspectReceipt(hash, agentId, amount, cleared, block) {
+      document.getElementById("modalReceiptHash").textContent = hash;
+      document.getElementById("modalAgentId").textContent = agentId;
+      document.getElementById("modalBlock").textContent = `#${block}`;
+      document.getElementById("modalAmount").textContent = `$${amount.toLocaleString(undefined, {minimumFractionDigits: 2})} USDC`;
+      
+      const statusEl = document.getElementById("modalStatus");
+      if (cleared) {
+        statusEl.textContent = "OK_COMPLIANT";
+        statusEl.className = "text-emerald-400 font-bold";
+      } else {
+        statusEl.textContent = "ERR_QUARANTINED";
+        statusEl.className = "text-rose-400 font-bold";
+      }
+
+      document.getElementById("modalExplorerLink").href = `https://testnet.monadexplorer.com/tx/${hash}`;
+      document.getElementById("receiptModal").classList.remove("hidden");
+    }
+
+    // Event Bindings
+    const toggleBtn = document.getElementById("toggleBurstBtn");
+    const burstBtnText = document.getElementById("burstBtnText");
+
+    toggleBtn.addEventListener("click", () => {
+      if (isRunning) {
+        clearInterval(intervalId);
+        isRunning = false;
+        burstBtnText.textContent = "INITIATE PARALLEL BURST";
+        toggleBtn.className = "px-6 py-3 rounded-none bg-white text-black hover:bg-neutral-200 transition-all font-mono text-xs uppercase tracking-wider font-semibold flex items-center gap-2 shadow-lg";
+      } else {
+        intervalId = setInterval(generateBurst, 1000);
+        isRunning = true;
+        burstBtnText.textContent = "PAUSE EXECUTION BURST";
+        toggleBtn.className = "px-6 py-3 rounded-none bg-amber-400 text-black hover:bg-amber-300 transition-all font-mono text-xs uppercase tracking-wider font-semibold flex items-center gap-2 shadow-lg";
+      }
+    });
+
+    document.getElementById("triggerAttackBtn").addEventListener("click", triggerRogueAttack);
+
+    // Initial Seeding
+    renderFleet();
+    for (let i = 0; i < 6; i++) {
+      generateBurst();
+    }
+  </script>
+</body>
+</html>
