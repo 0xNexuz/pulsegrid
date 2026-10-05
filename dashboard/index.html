@@ -10,7 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=JetBrains+Mono:wght@200;300;400;500;600&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -20,8 +20,9 @@
     body {
       font-family: var(--font-sans);
       background-color: #030304;
-      color: #E6E6E6;
+      color: #D4D4D8;
       overflow-x: hidden;
+      letter-spacing: -0.01em;
     }
     .font-serif {
       font-family: var(--font-serif);
@@ -31,87 +32,72 @@
     }
     /* Vertical film pinstripes matching museum reference artwork */
     .grid-bg {
-      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
       background-size: 20% 100%;
     }
-    .card-glass {
-      background: rgba(10, 10, 14, 0.78);
-      backdrop-filter: blur(20px);
+    /* Architectural museum plinth styling */
+    .plate-card {
+      background: rgba(8, 8, 11, 0.65);
       border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .card-pedestal {
-      background: rgba(8, 8, 12, 0.85);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    .plate-card:hover {
+      border-color: rgba(255, 255, 255, 0.18);
     }
-    .card-pedestal:hover {
-      border-color: rgba(255, 255, 255, 0.16);
-      transform: translateY(-2px);
-    }
+    /* Custom refined scrollbars */
     ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
     }
     ::-webkit-scrollbar-track {
-      background: #050507;
+      background: #030304;
     }
     ::-webkit-scrollbar-thumb {
-      background: #23232D;
-      border-radius: 2px;
-    }
-    @keyframes gentle-pulse {
-      0%, 100% { opacity: 0.9; }
-      50% { opacity: 0.5; }
-    }
-    .gentle-pulse {
-      animation: gentle-pulse 3s ease-in-out infinite;
+      background: #1C1C24;
+      border-radius: 1px;
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-white selection:text-black">
 
-  <!-- Vertical Film Grid Lines Overlay (Matching Reference) -->
-  <div class="fixed inset-0 pointer-events-none grid-bg z-0 opacity-80" aria-hidden="true"></div>
+  <!-- Vertical Film Grid Lines Overlay (Matching Museum Reference) -->
+  <div class="fixed inset-0 pointer-events-none grid-bg z-0 opacity-90" aria-hidden="true"></div>
 
-  <!-- Top Navigation Header (Pure Neoclassical Museum Minimalism) -->
-  <header class="relative z-40 w-full px-8 md:px-16 pt-8 pb-4 flex items-center justify-between gap-6">
+  <!-- Top Navigation Header (Pure Museum Minimalism) -->
+  <header class="relative z-40 w-full px-8 md:px-16 pt-8 pb-4 flex items-center justify-between gap-6 border-b border-white/[0.04]">
     <!-- Brand Logo Crest -->
-    <a href="/" class="flex items-center gap-3 group flex-shrink-0">
-      <div class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-purple-900/60 via-purple-950/40 to-black border border-purple-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(131,110,249,0.35)] group-hover:border-purple-400 group-hover:shadow-[0_0_25px_rgba(131,110,249,0.6)] transition-all duration-300">
-        <!-- Neoclassical Ionic Pillar + Electric Monad Pulse Crest -->
-        <svg class="w-4 h-4 text-purple-200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 6H19M7 4H17M8 8H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M8 8V16M16 8V16" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M12 7L10.5 12H13.5L12 17" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="12" cy="12" r="1.2" fill="#FFFFFF"/>
-          <path d="M7 16H17M5 18H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <a href="/" class="flex items-center gap-3.5 group flex-shrink-0">
+      <div class="w-8 h-8 rounded-lg bg-black border border-white/20 flex items-center justify-center group-hover:border-white transition-colors duration-300">
+        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 6H19M7 4H17M8 8H16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M8 8V16M16 8V16" stroke="#71717A" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M12 7L10.5 12H13.5L12 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="1" fill="#FFFFFF"/>
+          <path d="M7 16H17M5 18H19" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
-        <span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
-        <span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-purple-400"></span>
       </div>
       <div class="flex flex-col">
-        <span class="font-serif text-lg tracking-wider font-semibold text-white group-hover:text-purple-200 transition-colors leading-none">PULSEGRID</span>
-        <span class="font-mono text-[8px] tracking-[0.25em] text-purple-400/90 uppercase leading-tight mt-1">CITADEL · MONAD</span>
+        <span class="font-serif text-lg tracking-widest font-normal text-white group-hover:text-neutral-300 transition-colors leading-none">PULSEGRID</span>
+        <span class="font-mono text-[8px] tracking-[0.25em] text-neutral-500 uppercase leading-tight mt-1">CITADEL · MONAD</span>
       </div>
     </a>
 
-    <!-- Center Navigation Links (Matching Museum Reference Style) -->
-    <nav class="hidden md:flex items-center gap-8 lg:gap-12 text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-neutral-400">
+    <!-- Center Navigation Links (Matching Exact Museum Reference Spacing) -->
+    <nav class="hidden md:flex items-center gap-10 lg:gap-14 text-xs font-normal tracking-[0.2em] uppercase text-neutral-400">
       <a href="#hero" class="text-white relative pb-1">
         OVERVIEW
-        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-blue-500 rounded-full"></span>
+        <span class="absolute bottom-0 left-0 w-5 h-[2px] bg-blue-500 rounded-full"></span>
       </a>
-      <a href="#workbench" class="hover:text-white transition-colors duration-200">LABORATORY</a>
-      <a href="#waterfall" class="hover:text-white transition-colors duration-200">WATERFALL</a>
-      <a href="#fleet" class="hover:text-white transition-colors duration-200">SPECIMENS</a>
+      <a href="#controls" class="hover:text-white transition-colors duration-200">BENCH</a>
+      <a href="#ledger" class="hover:text-white transition-colors duration-200">LEDGER</a>
+      <a href="#specimens" class="hover:text-white transition-colors duration-200">SPECIMENS</a>
       <a href="#invariants" class="hover:text-white transition-colors duration-200">INVARIANTS</a>
-      <a href="/docs" class="text-purple-300 hover:text-white transition-colors duration-200 font-mono text-xs">DOCS ↗</a>
+      <a href="/docs" class="text-neutral-300 hover:text-white transition-colors duration-200 font-mono text-[11px]">DOCS ↗</a>
     </nav>
 
     <!-- Right Network Indicator -->
     <div class="flex items-center gap-3 text-xs font-mono tracking-wider flex-shrink-0">
-      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/40 border border-purple-500/30 text-purple-200 text-[11px]">
+      <span class="inline-flex items-center gap-2 px-3 py-1 border border-white/10 text-neutral-400 text-[10px] tracking-widest uppercase">
         <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
         MONAD · 10143
       </span>
@@ -119,11 +105,11 @@
   </header>
 
   <!-- Hero Section: Exact 1:1 Composition with User Reference Artwork -->
-  <section id="hero" class="relative z-10 w-full min-h-[90vh] flex flex-col justify-center px-8 md:px-16 pt-6 pb-16 overflow-hidden">
+  <section id="hero" class="relative z-10 w-full min-h-[90vh] flex flex-col justify-center px-8 md:px-16 pt-8 pb-16 overflow-hidden">
     
     <!-- Central / Right Statue Backdrop (Statue Bust with Circular Glowing Halo) -->
     <div class="absolute inset-0 flex items-center justify-center lg:justify-end pointer-events-none select-none z-0">
-      <div class="relative w-full max-w-3xl lg:max-w-4xl h-[650px] lg:h-[820px] lg:mr-4 flex items-center justify-center">
+      <div class="relative w-full max-w-3xl lg:max-w-4xl h-[680px] lg:h-[840px] lg:mr-4 flex items-center justify-center">
         <img 
           src="/hero-statue.jpg" 
           alt="PulseGrid Neoclassical Oracle Bust with Glowing Halo" 
@@ -140,8 +126,8 @@
       
       <!-- Left Column: Monumental Classical Serif Headline (Overlapping Statue Base) -->
       <div class="lg:col-span-7 space-y-4">
-        <div class="text-[11px] font-mono uppercase tracking-[0.3em] text-neutral-500 flex items-center gap-2">
-          <span class="w-6 h-px bg-neutral-600"></span>
+        <div class="text-[10px] font-mono uppercase tracking-[0.3em] text-neutral-500 flex items-center gap-2">
+          <span class="w-6 h-px bg-neutral-700"></span>
           CITADEL OF AUTONOMOUS AGENTS · MONAD METROPOLIS
         </div>
         
@@ -159,15 +145,15 @@
           <strong class="text-neutral-200 font-normal">PulseGrid</strong> operates as the deterministic sanctuary on Monad—clearing parallel execution, bounding spend velocity, and isolating adversarial anomalies in under 40 milliseconds with sub-second finality.
         </p>
 
-        <div class="flex items-center gap-6 pt-2 font-mono text-[11px] text-neutral-500 uppercase tracking-widest border-t border-white/[0.08]">
+        <div class="flex items-center gap-6 pt-2 font-mono text-[10px] text-neutral-500 uppercase tracking-widest border-t border-white/[0.08]">
           <div class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
             <span class="text-neutral-300">Monad Parallel EVM</span>
           </div>
           <span>·</span>
           <span class="text-neutral-400">10,000 TPS Native</span>
           <span>·</span>
-          <a href="#workbench" class="text-blue-400 hover:text-white transition-colors">EXPLORE ↓</a>
+          <a href="#controls" class="text-neutral-300 hover:text-white transition-colors">EXPLORE ↓</a>
         </div>
       </div>
 
@@ -175,130 +161,106 @@
 
   </section>
 
-  <!-- Curator Console: Interactive Risk & Concurrency Workbench -->
-  <section id="workbench" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full">
-    <div class="card-glass border border-white/[0.08] p-6 md:p-8 backdrop-blur-2xl">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-white/[0.06]">
+  <!-- Interactive Concurrency & Risk Bench (Austere Swiss Typographic Controls) -->
+  <section id="controls" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-10 w-full">
+    <div class="border-t border-b border-white/[0.08] py-8 space-y-6">
+      
+      <!-- Section Title & Status Metadata -->
+      <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
         <div>
-          <div class="flex items-center gap-2 text-[10px] font-mono tracking-[0.25em] text-purple-400 uppercase">
-            <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
-            CURATOR CONSOLE · ADVERSARIAL RISK LAB
-          </div>
-          <h3 class="font-serif text-2xl sm:text-3xl text-white font-normal mt-1">
-            Concurrency & Risk Workbench
-          </h3>
-          <p class="text-xs text-neutral-400 font-light mt-1 max-w-xl">
-            Simulate parallel bursts or inject targeted adversarial breaches to witness real-time deterministic clearing, velocity quarantines, and 0ms state rollbacks.
-          </p>
+          <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">SECTION 01 / CONTROL & RISK BENCH</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white font-normal tracking-tight">Governance Bench</h2>
+        </div>
+        <div class="flex items-center gap-8 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div><span class="text-neutral-600 text-[10px] block">BLOCK HEIGHT</span><span id="heroBlockTicker" class="text-white font-normal mt-0.5 block">#18,492,044</span></div>
+          <div class="w-px h-6 bg-white/[0.06]"></div>
+          <div><span class="text-neutral-600 text-[10px] block">FINALITY</span><span class="text-white font-normal mt-0.5 block">&lt; 38ms</span></div>
+          <div class="w-px h-6 bg-white/[0.06]"></div>
+          <div><span class="text-neutral-600 text-[10px] block">SETTLED VOLUME</span><span id="heroVolumeTicker" class="text-white font-normal mt-0.5 block">$1,482,910</span></div>
+          <div class="w-px h-6 bg-white/[0.06]"></div>
+          <div><span class="text-neutral-600 text-[10px] block">EQUILIBRIUM</span><span class="text-white font-normal mt-0.5 block"><span id="activeFleetCount">5</span> Active · <span id="quarantinedFleetCount" class="text-rose-400">1</span> Quarantined</span></div>
+        </div>
+      </div>
+
+      <!-- Austere Typographic Action Controls (NO Emojis, Pure Hairline Styling) -->
+      <div class="pt-4 border-t border-white/[0.04] flex flex-wrap items-center justify-between gap-4 font-mono text-xs uppercase tracking-widest">
+        <div class="flex flex-wrap items-center gap-6">
+          <button id="toggleBurstBtn" class="group flex items-center gap-2.5 text-white hover:text-neutral-300 transition-colors py-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-white group-hover:scale-125 transition-transform"></span>
+            <span id="burstBtnText" class="font-medium">01. EXECUTE PARALLEL BURST</span>
+          </button>
+          
+          <button onclick="testVelocityBreach()" class="text-neutral-400 hover:text-white transition-colors py-1">
+            02. BREACH VELOCITY
+          </button>
+
+          <button onclick="testAllowlistBreach()" class="text-neutral-400 hover:text-white transition-colors py-1">
+            03. BREACH TARGET
+          </button>
+
+          <button onclick="triggerRogueAttack()" class="text-neutral-400 hover:text-rose-300 transition-colors py-1">
+            04. ROGUE INCURSION
+          </button>
         </div>
 
-        <!-- Interactive Workbench Control Chips -->
-        <div class="flex flex-wrap items-center gap-2.5 font-mono text-xs">
-          <button id="toggleBurstBtn" class="px-5 py-2.5 bg-white text-black hover:bg-neutral-200 transition-all font-semibold uppercase tracking-wider flex items-center gap-2 active:scale-95">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span id="burstBtnText">INITIATE PARALLEL BURST</span>
-          </button>
-
-          <button onclick="testVelocityBreach()" class="px-4 py-2.5 bg-white/[0.03] hover:bg-amber-500/15 border border-white/10 hover:border-amber-500/30 text-amber-200 transition-all uppercase tracking-wider flex items-center gap-2 active:scale-95" title="Force hourly velocity limit breach">
-            <span>⚡ Test Velocity Breach</span>
-          </button>
-
-          <button onclick="testAllowlistBreach()" class="px-4 py-2.5 bg-white/[0.03] hover:bg-rose-500/15 border border-white/10 hover:border-rose-500/30 text-rose-300 transition-all uppercase tracking-wider flex items-center gap-2 active:scale-95" title="Call unallowlisted protocol">
-            <span>🛡️ Test Target Breach</span>
-          </button>
-
-          <button onclick="triggerRogueAttack()" class="px-4 py-2.5 bg-white/[0.03] hover:bg-rose-500/15 border border-white/10 hover:border-rose-500/30 text-rose-300 transition-all uppercase tracking-wider flex items-center gap-2 active:scale-95" title="Flash-drain attack attempt">
-            <span>🚨 Rogue Incursion</span>
-          </button>
-
-          <button onclick="reactivateAllAgents()" class="px-4 py-2.5 bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/30 text-purple-200 transition-all uppercase tracking-wider flex items-center gap-2 active:scale-95" title="Restore all quarantined specimens">
-            <span>🔄 Restore Fleet</span>
+        <div>
+          <button onclick="reactivateAllAgents()" class="text-neutral-400 hover:text-white border-b border-neutral-600 hover:border-white pb-0.5 transition-colors">
+            05. RESTORE SANCTUARY EQUILIBRIUM
           </button>
         </div>
       </div>
 
-      <!-- Real-Time Telemetry Readouts -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 font-mono text-xs">
-        <div>
-          <span class="text-neutral-500 text-[10px] uppercase block tracking-wider">MONAD BLOCK HEIGHT</span>
-          <span id="heroBlockTicker" class="text-white text-sm font-medium mt-0.5 block">#18,492,044</span>
-        </div>
-        <div>
-          <span class="text-neutral-500 text-[10px] uppercase block tracking-wider">PARALLEL FINALITY</span>
-          <span class="text-emerald-400 text-sm font-medium mt-0.5 block">&lt; 38ms</span>
-        </div>
-        <div>
-          <span class="text-neutral-500 text-[10px] uppercase block tracking-wider">SETTLED VOLUME</span>
-          <span id="heroVolumeTicker" class="text-white text-sm font-medium mt-0.5 block">$1,482,910</span>
-        </div>
-        <div>
-          <span class="text-neutral-500 text-[10px] uppercase block tracking-wider">FLEET EQUILIBRIUM</span>
-          <span class="text-neutral-300 text-sm font-medium mt-0.5 block">
-            <span id="activeFleetCount" class="text-emerald-400 font-bold">5</span> Active · 
-            <span id="quarantinedFleetCount" class="text-rose-400 font-bold">1</span> Quarantined
-          </span>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- Live Execution Waterfall: Architectural Register / Ledger -->
-  <section id="waterfall" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/[0.08] pb-6">
+  <!-- Live Execution Ledger (Typographic Inscription Register) -->
+  <section id="ledger" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
+    <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4 border-b border-white/[0.08] pb-6">
       <div>
-        <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-2">LEDGER SPECIFICATION · 10,000 TPS</span>
-        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-normal tracking-tight">Execution Waterfall</h2>
+        <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">SECTION 02 / REAL-TIME SETTLEMENT</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-normal tracking-tight">Execution Ledger</h2>
       </div>
-      <div class="flex items-center gap-6 font-mono text-xs text-neutral-400">
-        <div>
-          <span class="text-neutral-500 text-[10px] uppercase block">CLEARED</span>
-          <span id="clearedCountEl" class="text-white text-base font-medium">1,258</span>
-        </div>
-        <div class="w-px h-6 bg-white/10"></div>
-        <div>
-          <span class="text-neutral-500 text-[10px] uppercase block">QUARANTINED</span>
-          <span id="quarantinedCountEl" class="text-rose-400 text-base font-medium">0</span>
-        </div>
-        <div class="w-px h-6 bg-white/10"></div>
-        <div>
-          <span class="text-neutral-500 text-[10px] uppercase block">CONCURRENCY</span>
-          <span class="text-neutral-300 text-base font-medium">4–6 Agents/Slot</span>
-        </div>
+      <div class="flex items-center gap-8 font-mono text-xs text-neutral-400 uppercase tracking-widest">
+        <div><span class="text-neutral-600 text-[10px] block">CLEARED</span><span id="clearedCountEl" class="text-white text-sm font-normal">1,258</span></div>
+        <div class="w-px h-6 bg-white/[0.06]"></div>
+        <div><span class="text-neutral-600 text-[10px] block">QUARANTINED</span><span id="quarantinedCountEl" class="text-neutral-400 text-sm font-normal">0</span></div>
+        <div class="w-px h-6 bg-white/[0.06]"></div>
+        <div><span class="text-neutral-600 text-[10px] block">CONCURRENCY</span><span class="text-neutral-300 text-sm font-normal">4–6 Agents/Slot</span></div>
       </div>
     </div>
 
-    <!-- Terminal Ledger Container -->
-    <div class="card-glass border border-white/[0.08] overflow-hidden">
-      <!-- Ledger Column Headers -->
-      <div class="grid grid-cols-12 gap-2 px-6 py-3.5 bg-white/[0.02] border-b border-white/[0.08] font-mono text-[11px] text-neutral-400 uppercase tracking-widest">
+    <!-- Ledger Table -->
+    <div class="w-full overflow-hidden">
+      <!-- Headers -->
+      <div class="grid grid-cols-12 gap-4 py-3 border-b border-white/[0.08] font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
         <div class="col-span-2">VERDICT</div>
-        <div class="col-span-3">SPECIMEN & FLEET</div>
-        <div class="col-span-3 text-right">VOLUME (USDC)</div>
+        <div class="col-span-4">SPECIMEN & FLEET</div>
+        <div class="col-span-2 text-right">VOLUME (USDC)</div>
         <div class="col-span-2 text-center">FINALITY</div>
-        <div class="col-span-2 text-right">RECEIPT HASH</div>
+        <div class="col-span-2 text-right">RECEIPT ROOT</div>
       </div>
 
-      <!-- Scrolling Stream of Transactions -->
-      <div id="txStream" class="h-80 overflow-y-auto divide-y divide-white/[0.04] font-mono text-xs">
-        <!-- Dynamically injected rows -->
+      <!-- Scrolling Stream -->
+      <div id="txStream" class="h-80 overflow-y-auto divide-y divide-white/[0.03] font-mono text-xs">
+        <!-- Injected via JavaScript -->
       </div>
     </div>
   </section>
 
-  <!-- Section: Active Autonomous Fleet (Sculptural Exhibition Pedestals) -->
-  <section id="fleet" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
-    <div class="border-b border-white/[0.08] pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+  <!-- Section: Active Autonomous Fleet (Sculptural Pedestals / Catalog Plates) -->
+  <section id="specimens" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
+    <div class="border-b border-white/[0.08] pb-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
       <div>
-        <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-2">SANCTIONED ENTITIES</span>
-        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-normal tracking-tight">Active Autonomous Fleet</h2>
+        <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">SECTION 03 / SANCTIONED ENTITIES</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-normal tracking-tight">Specimen Gallery</h2>
       </div>
-      <a href="https://testnet.monadscan.com/address/0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a" target="_blank" class="font-mono text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1">
+      <a href="https://testnet.monadscan.com/address/0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a" target="_blank" class="font-mono text-xs text-neutral-400 hover:text-white uppercase tracking-widest flex items-center gap-1">
         REGISTRY: 0x904A...E63a (MonadScan ↗)
       </a>
     </div>
 
     <!-- Pedestal Grid (Populated dynamically) -->
-    <div id="fleetGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div id="fleetGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Injected via JavaScript -->
     </div>
   </section>
@@ -306,94 +268,94 @@
   <!-- Section: Build Harness Engineering Audit & Invariants -->
   <section id="invariants" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
     <div class="border-b border-white/[0.08] pb-6">
-      <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-2">FORMAL VERIFICATION</span>
-      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-normal tracking-tight">Build Harness Invariants</h2>
+      <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">SECTION 04 / FORMAL INVARIANTS</span>
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-normal tracking-tight">System Invariants</h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-5 font-mono text-xs">
-      <div class="card-pedestal p-6 space-y-3">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 font-mono text-xs">
+      <div class="plate-card p-6 space-y-3">
         <span class="text-neutral-500 uppercase text-[10px] tracking-widest block">INVARIANT I</span>
-        <div class="font-serif text-lg text-white font-normal">Hard Spending Ceiling</div>
+        <div class="font-serif text-xl text-white font-normal">Hard Spending Ceiling</div>
         <p class="text-neutral-400 font-light text-[11px] leading-relaxed">
           No agent call can exceed tier-governed spending caps. Breaches fail-closed with zero state mutation.
         </p>
-        <div class="pt-2">
-          <span class="inline-block px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">VERIFIED (TESTED)</span>
+        <div class="pt-2 text-[10px] text-neutral-500 uppercase tracking-widest">
+          STATUS: VERIFIED
         </div>
       </div>
 
-      <div class="card-pedestal p-6 space-y-3">
+      <div class="plate-card p-6 space-y-3">
         <span class="text-neutral-500 uppercase text-[10px] tracking-widest block">INVARIANT II</span>
-        <div class="font-serif text-lg text-white font-normal">Rolling Velocity Window</div>
+        <div class="font-serif text-xl text-white font-normal">Rolling Velocity Window</div>
         <p class="text-neutral-400 font-light text-[11px] leading-relaxed">
           Hourly volume is bounded deterministically per account. Rapid micro-drains trigger automatic circuit quarantine.
         </p>
-        <div class="pt-2">
-          <span class="inline-block px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">VERIFIED (TESTED)</span>
+        <div class="pt-2 text-[10px] text-neutral-500 uppercase tracking-widest">
+          STATUS: VERIFIED
         </div>
       </div>
 
-      <div class="card-pedestal p-6 space-y-3">
+      <div class="plate-card p-6 space-y-3">
         <span class="text-neutral-500 uppercase text-[10px] tracking-widest block">INVARIANT III</span>
-        <div class="font-serif text-lg text-white font-normal">Protocol Allowlist Gate</div>
+        <div class="font-serif text-xl text-white font-normal">Protocol Allowlist Gate</div>
         <p class="text-neutral-400 font-light text-[11px] leading-relaxed">
           Agents may only invoke governance-approved target contracts. Unverified target calls are immediately intercepted.
         </p>
-        <div class="pt-2">
-          <span class="inline-block px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">VERIFIED (TESTED)</span>
+        <div class="pt-2 text-[10px] text-neutral-500 uppercase tracking-widest">
+          STATUS: VERIFIED
         </div>
       </div>
 
-      <div class="card-pedestal p-6 space-y-3">
+      <div class="plate-card p-6 space-y-3">
         <span class="text-neutral-500 uppercase text-[10px] tracking-widest block">INVARIANT IV</span>
-        <div class="font-serif text-lg text-white font-normal">Tamper-Evident Receipts</div>
+        <div class="font-serif text-xl text-white font-normal">Tamper-Evident Receipts</div>
         <p class="text-neutral-400 font-light text-[11px] leading-relaxed">
           Every clearance emits a Keccak256 / SHA-256 receipt tying agent ID, slot height, and policy outcome.
         </p>
-        <div class="pt-2">
-          <span class="inline-block px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">VERIFIED (TESTED)</span>
+        <div class="pt-2 text-[10px] text-neutral-500 uppercase tracking-widest">
+          STATUS: VERIFIED
         </div>
       </div>
     </div>
   </section>
 
   <!-- Live Verified Monad Testnet Contracts Banner -->
-  <section class="relative z-20 border-t border-white/[0.08] bg-white/[0.01] py-10 px-8 md:px-16 text-xs font-mono">
+  <section class="relative z-20 border-t border-white/[0.08] bg-white/[0.01] py-12 px-8 md:px-16 text-xs font-mono">
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
         <div class="flex items-center gap-3">
-          <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
-          <span class="text-white font-medium text-sm tracking-wider uppercase">Live Onchain Deployment · Monad Testnet (Chain ID: 10143)</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+          <span class="text-white font-normal text-xs tracking-widest uppercase">Verified Contracts · Monad Testnet (Chain ID: 10143)</span>
         </div>
         <div class="text-neutral-400 text-xs">
-          Deployer: <a href="https://testnet.monadscan.com/address/0x4203A9A0bF96d007939eBFD08b33c23AD7DE1683" target="_blank" class="text-purple-400 hover:underline">0x4203A9A0bF96d007939eBFD08b33c23AD7DE1683 ↗</a>
+          Deployer: <a href="https://testnet.monadscan.com/address/0x4203A9A0bF96d007939eBFD08b33c23AD7DE1683" target="_blank" class="text-neutral-200 hover:underline">0x4203A9A0bF96d007939eBFD08b33c23AD7DE1683 ↗</a>
         </div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 text-[11px]">
-        <a href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="p-4 card-pedestal hover:border-purple-500/50 transition-all group">
-          <span class="text-neutral-500 block text-[10px] uppercase">ClearingHouse</span>
-          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate mt-1">0xF691...7f25</span>
-          <span class="text-purple-400 text-[10px] mt-2 block">MonadScan ↗</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 text-[11px]">
+        <a href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="p-4 plate-card group">
+          <span class="text-neutral-500 block text-[10px] uppercase tracking-wider">ClearingHouse</span>
+          <span class="text-white font-normal block truncate mt-1">0xF691...7f25</span>
+          <span class="text-neutral-500 group-hover:text-white text-[10px] mt-2 block transition-colors">MonadScan ↗</span>
         </a>
-        <a href="https://testnet.monadscan.com/address/0x0003d9b81E576f2a732b96b7d476C74459e99091" target="_blank" class="p-4 card-pedestal hover:border-purple-500/50 transition-all group">
-          <span class="text-neutral-500 block text-[10px] uppercase">Firewall Policy</span>
-          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate mt-1">0x0003...9091</span>
-          <span class="text-purple-400 text-[10px] mt-2 block">MonadScan ↗</span>
+        <a href="https://testnet.monadscan.com/address/0x0003d9b81E576f2a732b96b7d476C74459e99091" target="_blank" class="p-4 plate-card group">
+          <span class="text-neutral-500 block text-[10px] uppercase tracking-wider">Firewall Policy</span>
+          <span class="text-white font-normal block truncate mt-1">0x0003...9091</span>
+          <span class="text-neutral-500 group-hover:text-white text-[10px] mt-2 block transition-colors">MonadScan ↗</span>
         </a>
-        <a href="https://testnet.monadscan.com/address/0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a" target="_blank" class="p-4 card-pedestal hover:border-purple-500/50 transition-all group">
-          <span class="text-neutral-500 block text-[10px] uppercase">Agent Registry</span>
-          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate mt-1">0x904A...E63a</span>
-          <span class="text-purple-400 text-[10px] mt-2 block">MonadScan ↗</span>
+        <a href="https://testnet.monadscan.com/address/0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a" target="_blank" class="p-4 plate-card group">
+          <span class="text-neutral-500 block text-[10px] uppercase tracking-wider">Agent Registry</span>
+          <span class="text-white font-normal block truncate mt-1">0x904A...E63a</span>
+          <span class="text-neutral-500 group-hover:text-white text-[10px] mt-2 block transition-colors">MonadScan ↗</span>
         </a>
-        <a href="https://testnet.monadscan.com/address/0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55" target="_blank" class="p-4 card-pedestal hover:border-purple-500/50 transition-all group">
-          <span class="text-neutral-500 block text-[10px] uppercase">MockDEX Venue</span>
-          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate mt-1">0xA3E4...4A55</span>
-          <span class="text-purple-400 text-[10px] mt-2 block">MonadScan ↗</span>
+        <a href="https://testnet.monadscan.com/address/0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55" target="_blank" class="p-4 plate-card group">
+          <span class="text-neutral-500 block text-[10px] uppercase tracking-wider">MockDEX Venue</span>
+          <span class="text-white font-normal block truncate mt-1">0xA3E4...4A55</span>
+          <span class="text-neutral-500 group-hover:text-white text-[10px] mt-2 block transition-colors">MonadScan ↗</span>
         </a>
-        <a href="https://testnet.monadscan.com/address/0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52" target="_blank" class="p-4 card-pedestal hover:border-purple-500/50 transition-all group">
-          <span class="text-neutral-500 block text-[10px] uppercase">MockUSDC Asset</span>
-          <span class="text-neutral-200 group-hover:text-purple-300 font-bold block truncate mt-1">0x3777...Aa52</span>
-          <span class="text-purple-400 text-[10px] mt-2 block">MonadScan ↗</span>
+        <a href="https://testnet.monadscan.com/address/0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52" target="_blank" class="p-4 plate-card group">
+          <span class="text-neutral-500 block text-[10px] uppercase tracking-wider">MockUSDC Asset</span>
+          <span class="text-white font-normal block truncate mt-1">0x3777...Aa52</span>
+          <span class="text-neutral-500 group-hover:text-white text-[10px] mt-2 block transition-colors">MonadScan ↗</span>
         </a>
       </div>
     </div>
@@ -414,92 +376,86 @@
   </footer>
 
   <!-- Modal: Receipt Inspector -->
-  <div id="receiptModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
-    <div class="card-glass max-w-lg w-full p-6 border border-white/20 space-y-4">
-      <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <h4 class="font-serif text-2xl text-white">Cryptographic Execution Receipt</h4>
-        <button onclick="document.getElementById('receiptModal').classList.add('hidden')" class="text-neutral-400 hover:text-white font-mono text-sm">✕</button>
+  <div id="receiptModal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="plate-card max-w-lg w-full p-8 border border-white/20 space-y-5">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <h4 class="font-serif text-2xl text-white font-normal">Cryptographic Receipt</h4>
+        <button onclick="document.getElementById('receiptModal').classList.add('hidden')" class="text-neutral-400 hover:text-white font-mono text-xs">CLOSE [X]</button>
       </div>
 
-      <div class="space-y-3 font-mono text-xs">
+      <div class="space-y-4 font-mono text-xs">
         <div>
-          <span class="text-neutral-400 block mb-1 text-[11px]">CRYPTOGRAPHIC STATE ROOT (SHA-256):</span>
-          <div id="modalReceiptHash" class="p-2.5 bg-black/70 border border-white/10 text-emerald-400 break-all select-all font-bold">0x...</div>
+          <span class="text-neutral-500 block mb-1 text-[10px] uppercase tracking-wider">CRYPTOGRAPHIC STATE ROOT (SHA-256):</span>
+          <div id="modalReceiptHash" class="p-3 bg-black border border-white/10 text-white break-all select-all font-mono">0x...</div>
         </div>
 
         <div>
-          <span class="text-neutral-400 block mb-1 text-[11px]">RAW VERIFIABLE PREIMAGE:</span>
-          <div id="modalPreimage" class="p-2 bg-white/[0.03] border border-white/5 text-neutral-300 break-all select-all text-[10px] leading-relaxed">AGENT_ALPHA_01|...</div>
+          <span class="text-neutral-500 block mb-1 text-[10px] uppercase tracking-wider">RAW VERIFIABLE PREIMAGE:</span>
+          <div id="modalPreimage" class="p-3 bg-white/[0.02] border border-white/5 text-neutral-300 break-all select-all text-[11px] leading-relaxed">AGENT_ALPHA_01|...</div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
-          <div class="p-2.5 bg-white/[0.02] border border-white/5">
-            <span class="text-neutral-500 block text-[10px]">SPECIMEN IDENTIFIER:</span>
-            <span id="modalAgentId" class="text-white font-medium">AGENT_ALPHA_01</span>
+        <div class="grid grid-cols-2 gap-4 border-t border-white/5 pt-3">
+          <div>
+            <span class="text-neutral-500 block text-[10px] uppercase">SPECIMEN:</span>
+            <span id="modalAgentId" class="text-white font-normal">AGENT_ALPHA_01</span>
           </div>
-          <div class="p-2.5 bg-white/[0.02] border border-white/5">
-            <span class="text-neutral-500 block text-[10px]">MONAD BLOCK:</span>
-            <span id="modalBlock" class="text-white font-medium">#18,492,044</span>
+          <div>
+            <span class="text-neutral-500 block text-[10px] uppercase">MONAD BLOCK:</span>
+            <span id="modalBlock" class="text-white font-normal">#18,492,044</span>
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
-          <div class="p-2.5 bg-white/[0.02] border border-white/5">
-            <span class="text-neutral-500 block text-[10px]">FIREWALL VERDICT:</span>
-            <span id="modalStatus" class="text-emerald-400 font-bold">OK_COMPLIANT</span>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <span class="text-neutral-500 block text-[10px] uppercase">FIREWALL VERDICT:</span>
+            <span id="modalStatus" class="text-white font-normal">OK_COMPLIANT</span>
           </div>
-          <div class="p-2.5 bg-white/[0.02] border border-white/5">
-            <span class="text-neutral-500 block text-[10px]">CLEARED VOLUME:</span>
-            <span id="modalAmount" class="text-white font-bold">$420.00 USDC</span>
+          <div>
+            <span class="text-neutral-500 block text-[10px] uppercase">SETTLED VOLUME:</span>
+            <span id="modalAmount" class="text-white font-normal">$420.00 USDC</span>
           </div>
         </div>
 
         <!-- Real-Time Interactive Preimage Verification -->
-        <div class="pt-1">
-          <button id="verifyPreimageBtn" onclick="verifyPreimageLive()" class="w-full py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 font-bold transition-all text-[11px] uppercase tracking-wider flex items-center justify-center gap-2">
-            <span>🔬 Verify Cryptographic Preimage Live in Browser</span>
+        <div class="pt-2">
+          <button id="verifyPreimageBtn" onclick="verifyPreimageLive()" class="w-full py-2.5 border border-white/20 hover:border-white text-white font-mono transition-all text-[10px] uppercase tracking-widest text-center">
+            Verify Cryptographic Preimage Live
           </button>
-          <div id="verificationResult" class="hidden mt-2 p-2 rounded bg-emerald-950/30 border border-emerald-500/40 text-emerald-300 text-[11px] text-center font-bold">
-            ✓ CRYPTOGRAPHIC MATCH CONFIRMED (0.09ms Web Crypto SHA-256 Engine)
+          <div id="verificationResult" class="hidden mt-2 p-2 bg-white/[0.03] border border-white/20 text-white text-[10px] text-center font-mono">
+            CONFIRMED: Real SHA-256 Preimage Match
           </div>
         </div>
 
         <div class="pt-1">
-          <a id="modalExplorerLink" href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="block w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-mono uppercase text-xs tracking-wider text-center font-bold transition-colors">
-            INSPECT CLEARING CONTRACT ON MONADSCAN ↗
+          <a id="modalExplorerLink" href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="block w-full py-2 text-neutral-400 hover:text-white font-mono uppercase text-[10px] tracking-widest text-center transition-colors">
+            Inspect Clearing Contract On MonadScan ↗
           </a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Floating Architectural Interception Toast HUD -->
+  <!-- Minimalist Architectural Interception Toast -->
   <div id="quarantineToast" class="fixed bottom-6 right-6 z-50 max-w-md w-full transition-all duration-500 translate-y-24 opacity-0 pointer-events-none">
-    <div class="card-glass border border-rose-500/40 bg-[#0c0a0f]/95 shadow-[0_20px_60px_rgba(244,63,94,0.3)] p-5 backdrop-blur-2xl">
-      <div class="flex items-start justify-between gap-3">
-        <div class="flex items-center gap-2.5">
-          <span class="relative flex h-2.5 w-2.5">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500"></span>
-          </span>
-          <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-rose-300 font-bold">
-            SANCTUARY FIREWALL · ANOMALY INTERCEPTED
-          </span>
-        </div>
-        <button onclick="dismissToast()" class="text-neutral-400 hover:text-white font-mono text-xs">✕</button>
+    <div class="plate-card border border-white/20 bg-[#08080B]/98 p-5 backdrop-blur-2xl space-y-3">
+      <div class="flex items-center justify-between border-b border-white/[0.08] pb-2">
+        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+          00 / FIREWALL INTERCEPT
+        </span>
+        <button onclick="dismissToast()" class="text-neutral-500 hover:text-white font-mono text-[10px]">CLOSE</button>
       </div>
       
-      <div class="mt-2.5 space-y-2 font-mono text-xs">
-        <p id="toastAgentDetails" class="text-neutral-200 text-[11px] leading-relaxed font-light">
+      <div class="space-y-2 font-mono text-xs">
+        <p id="toastAgentDetails" class="text-neutral-300 text-[11px] leading-relaxed font-light">
           Agent Arbitrage Prime breached rolling velocity cap. Deterministically quarantined.
         </p>
-        <div class="p-2 bg-black/60 border border-white/[0.06] text-[10px] text-neutral-400 break-all select-all">
-          <span class="text-neutral-500 block text-[9px] uppercase">Cryptographic State Root (SHA-256):</span>
-          <span id="toastHash" class="text-rose-400">0x...</span>
+        <div class="p-2 bg-black border border-white/[0.06] text-[10px] text-neutral-400 break-all select-all">
+          <span class="text-neutral-500 block text-[9px] uppercase">SHA-256 State Root:</span>
+          <span id="toastHash" class="text-neutral-300">0x...</span>
         </div>
         <div class="flex items-center justify-between pt-1 text-[10px]">
-          <span class="text-emerald-400 font-medium">✓ Treasury Loss: $0.00 (Zero State Mutation)</span>
-          <a href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="text-purple-400 hover:underline">
+          <span class="text-neutral-400">Treasury Loss: $0.00 (Rollback Enforced)</span>
+          <a href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="text-neutral-300 hover:text-white underline">
             MonadScan ↗
           </a>
         </div>
@@ -510,12 +466,12 @@
   <!-- Simulation & Interactive State Engine -->
   <script>
     const AGENTS = [
-      { id: "AGENT_ALPHA_01", numeral: "SPECIMEN I", name: "Arbitrage Prime", tier: "Tier 2", limit: 10000, windowLimit: 50000, currentSpent: 14200, volume: 482100, cleared: 412, status: "Active", risk: "Medium", lastAction: null, flash: null },
-      { id: "AGENT_BETA_02",  numeral: "SPECIMEN II", name: "Perp Hedger X", tier: "Tier 3", limit: 100000, windowLimit: 500000, currentSpent: 84000, volume: 812000, cleared: 610, status: "Active", risk: "High", lastAction: null, flash: null },
-      { id: "AGENT_GAMMA_03", numeral: "SPECIMEN III", name: "Micro Scalper 1", tier: "Tier 1", limit: 500, windowLimit: 2500, currentSpent: 750, volume: 45200, cleared: 125, status: "Active", risk: "Low", lastAction: null, flash: null },
-      { id: "AGENT_DELTA_04", numeral: "SPECIMEN IV", name: "Delta Neutral Y", tier: "Tier 2", limit: 10000, windowLimit: 50000, currentSpent: 6200, volume: 98400, cleared: 78, status: "Active", risk: "Medium", lastAction: null, flash: null },
-      { id: "AGENT_EPSILON_05", numeral: "SPECIMEN V", name: "Liquidator Bot", tier: "Tier 2", limit: 10000, windowLimit: 50000, currentSpent: 12400, volume: 45210, cleared: 23, status: "Active", risk: "Medium", lastAction: null, flash: null },
-      { id: "AGENT_ROGUE_99", numeral: "SPECIMEN VI", name: "Adversarial Test Specimen", tier: "Tier 1", limit: 500, windowLimit: 2500, currentSpent: 0, volume: 0, cleared: 0, status: "Active", risk: "Adversarial", lastAction: null, quarantineReason: null, flash: null }
+      { id: "AGENT_ALPHA_01", numeral: "PLATE I", name: "Arbitrage Prime", tier: "Tier 2", role: "Autonomous Liquidity Arbiter", limit: 10000, windowLimit: 50000, currentSpent: 14200, volume: 482100, cleared: 412, status: "Active", risk: "Medium", lastAction: null, flash: null },
+      { id: "AGENT_BETA_02",  numeral: "PLATE II", name: "Perp Hedger X", tier: "Tier 3", role: "Derivative Delta Rebalancer", limit: 100000, windowLimit: 500000, currentSpent: 84000, volume: 812000, cleared: 610, status: "Active", risk: "High", lastAction: null, flash: null },
+      { id: "AGENT_GAMMA_03", numeral: "PLATE III", name: "Micro Scalper 1", tier: "Tier 1", role: "High-Frequency Order Flow", limit: 500, windowLimit: 2500, currentSpent: 750, volume: 45200, cleared: 125, status: "Active", risk: "Low", lastAction: null, flash: null },
+      { id: "AGENT_DELTA_04", numeral: "PLATE IV", name: "Delta Neutral Y", tier: "Tier 2", role: "Basis Spread Arbitrageur", limit: 10000, windowLimit: 50000, currentSpent: 6200, volume: 98400, cleared: 78, status: "Active", risk: "Medium", lastAction: null, flash: null },
+      { id: "AGENT_EPSILON_05", numeral: "PLATE V", name: "Liquidator Bot", tier: "Tier 2", role: "Insolvent Collateral Harvester", limit: 10000, windowLimit: 50000, currentSpent: 12400, volume: 45210, cleared: 23, status: "Active", risk: "Medium", lastAction: null, flash: null },
+      { id: "AGENT_ROGUE_99", numeral: "PLATE VI", name: "Adversarial Specimen", tier: "Tier 1", role: "Simulated Stress Incursion", limit: 500, windowLimit: 2500, currentSpent: 0, volume: 0, cleared: 0, status: "Active", risk: "Adversarial", lastAction: null, quarantineReason: null, flash: null }
     ];
 
     let currentBlock = 18492044;
@@ -552,84 +508,75 @@
         const pct = Math.min(100, Math.round(((agent.currentSpent || 0) / agent.windowLimit) * 100));
         const card = document.createElement("div");
 
-        let borderClasses = "border-white/[0.07]";
-        let ringEffect = "";
+        let borderClass = "border-white/[0.08]";
         if (isQuarantined) {
-          borderClasses = "border-rose-500/70 bg-rose-950/20";
-          ringEffect = "shadow-[0_0_35px_rgba(244,63,94,0.25)]";
+          borderClass = "border-rose-500/60";
         } else if (agent.flash === "cleared") {
-          borderClasses = "border-emerald-400/80 bg-emerald-950/15";
-          ringEffect = "shadow-[0_0_35px_rgba(52,211,153,0.3)]";
+          borderClass = "border-white/50";
         }
 
-        card.className = `p-6 card-pedestal ${borderClasses} ${ringEffect}`;
+        card.className = `p-7 plate-card ${borderClass}`;
 
         card.innerHTML = `
           <div class="flex items-start justify-between mb-4">
             <div>
               <div class="text-[10px] font-mono tracking-[0.25em] text-neutral-500 uppercase">
-                ${agent.numeral || 'SPECIMEN'} · ${agent.tier}
+                ${agent.numeral || 'PLATE'} · ${agent.tier}
               </div>
               <h3 class="font-serif text-2xl text-white font-normal mt-1 leading-snug">
                 ${agent.name}
               </h3>
-              <div class="font-mono text-[10px] text-neutral-500 mt-0.5">${agent.id}</div>
+              <div class="font-mono text-[10px] text-neutral-500 mt-0.5">${agent.role}</div>
             </div>
             <div>
-              <span class="font-mono text-[10px] px-2.5 py-1 tracking-wider uppercase inline-flex items-center gap-1.5 ${
-                isQuarantined
-                  ? "bg-rose-500/20 text-rose-300 border border-rose-500/40 font-bold"
-                  : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30"
-              }">
-                <span class="w-1.5 h-1.5 rounded-full ${isQuarantined ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}"></span>
-                ${isQuarantined ? 'QUARANTINED' : 'SANCTIONED'}
+              <span class="font-mono text-[10px] uppercase tracking-widest ${isQuarantined ? 'text-rose-400' : 'text-neutral-400'}">
+                · ${isQuarantined ? 'QUARANTINED' : 'SANCTIONED'}
               </span>
             </div>
           </div>
 
-          <div class="space-y-3 pt-4 border-t border-white/[0.06] font-mono text-xs">
+          <div class="space-y-3 pt-5 border-t border-white/[0.06] font-mono text-xs">
             <div class="flex justify-between text-neutral-400 text-[11px]">
-              <span>Spending Cap:</span>
-              <span class="text-neutral-200 font-medium">$${agent.limit.toLocaleString()} USDC</span>
+              <span class="text-neutral-500">Spending Cap:</span>
+              <span class="text-neutral-200">$${agent.limit.toLocaleString()} USDC</span>
             </div>
 
-            <!-- Rolling Velocity Indicator -->
-            <div class="space-y-1.5">
-              <div class="flex justify-between text-[10px] text-neutral-400">
-                <span>Rolling 1h Velocity:</span>
-                <span class="${pct > 80 ? 'text-amber-400 font-bold' : 'text-neutral-300'}">
+            <!-- Razor-Thin Horizon Velocity Indicator -->
+            <div class="space-y-1.5 pt-1">
+              <div class="flex justify-between text-[10px] text-neutral-500">
+                <span>Velocity Capacity:</span>
+                <span class="${pct > 80 ? 'text-neutral-200 font-bold' : 'text-neutral-400'}">
                   $${(agent.currentSpent || 0).toLocaleString()} / $${agent.windowLimit.toLocaleString()} (${pct}%)
                 </span>
               </div>
-              <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                <div class="h-full transition-all duration-500 ${isQuarantined ? 'bg-rose-500' : (pct > 80 ? 'bg-amber-400' : 'bg-purple-500')}" style="width: ${pct}%"></div>
+              <div class="w-full h-px bg-white/10">
+                <div class="h-px transition-all duration-500 ${isQuarantined ? 'bg-rose-400' : 'bg-white'}" style="width: ${pct}%"></div>
               </div>
             </div>
 
             <div class="flex justify-between text-neutral-400 text-[11px] pt-1">
-              <span>Lifetime Settled:</span>
-              <span class="text-neutral-200 font-medium">$${agent.volume.toLocaleString()} (${agent.cleared} txs)</span>
+              <span class="text-neutral-500">Settled Volume:</span>
+              <span class="text-neutral-200">$${agent.volume.toLocaleString()} (${agent.cleared} txs)</span>
             </div>
 
-            <!-- Activity / State Footer -->
+            <!-- State / Footer -->
             ${
               isQuarantined
-                ? `<div class="mt-3 p-3 bg-rose-950/30 border border-rose-500/30 text-[10px] space-y-2">
-                     <div class="text-rose-300 font-bold leading-tight">
-                       ⊘ HALTED: ${agent.quarantineReason || 'ERR_MAX_SINGLE_TX_EXCEEDED'}
+                ? `<div class="mt-4 pt-3 border-t border-white/[0.06] space-y-2">
+                     <div class="text-[10px] text-rose-400 leading-tight">
+                       HALTED: ${agent.quarantineReason || 'ERR_MAX_SINGLE_TX_EXCEEDED'}
                      </div>
-                     <div class="text-neutral-400 text-[9px]">Zero state mutation · Rollback enforced</div>
-                     <button onclick="reactivateAgent('${agent.id}')" class="w-full py-1.5 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-200 font-bold uppercase tracking-wider text-[10px] transition-colors">
-                       🔄 Pardon Specimen
+                     <button onclick="reactivateAgent('${agent.id}')" class="text-[10px] text-neutral-300 hover:text-white uppercase tracking-widest border-b border-neutral-600 hover:border-white transition-colors pb-0.5">
+                       [ Pardon Specimen ]
                      </button>
                    </div>`
                 : agent.lastAction
-                ? `<div class="mt-3 p-2 bg-white/[0.02] border border-white/[0.05] text-[10px] flex items-center justify-between text-neutral-300">
-                     <span class="text-emerald-400">● Cleared: +$${agent.lastAction.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
-                     <span class="text-neutral-500">${agent.lastAction.latency}ms</span>
+                ? `<div class="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] text-neutral-400">
+                     <span>Settled: +$${agent.lastAction.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                     <span>${agent.lastAction.latency}ms</span>
                    </div>`
-                : `<div class="mt-3 py-1 text-center text-neutral-600 text-[10px] uppercase tracking-wider">
-                     Awaiting Parallel Slot
+                : `<div class="mt-4 pt-3 border-t border-white/[0.06] text-[10px] text-neutral-600 uppercase tracking-widest">
+                     Standby Slot
                    </div>`
             }
           </div>
@@ -647,20 +594,20 @@
       const stream = document.getElementById("txStream");
       if (!stream) return;
       const row = document.createElement("div");
-      row.className = "grid grid-cols-12 gap-2 px-6 py-3.5 items-center hover:bg-white/[0.02] transition-colors";
+      row.className = "grid grid-cols-12 gap-4 py-3.5 items-center hover:bg-white/[0.02] transition-colors";
 
       const statusBadge = tx.cleared
-        ? `<span class="inline-flex items-center gap-1.5 text-emerald-400 font-medium text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>CLEARED</span>`
-        : `<span class="inline-flex items-center gap-1.5 text-rose-400 font-bold text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>QUARANTINED</span>`;
+        ? `<span class="text-neutral-400 text-[11px]">· Cleared</span>`
+        : `<span class="text-rose-400 text-[11px]">· Quarantined</span>`;
 
       row.innerHTML = `
         <div class="col-span-2">${statusBadge}</div>
-        <div class="col-span-3 text-neutral-200 truncate font-sans text-xs">${tx.agentName}</div>
-        <div class="col-span-3 text-right font-mono font-medium ${tx.cleared ? 'text-white' : 'text-rose-400'}">$${tx.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
-        <div class="col-span-2 text-center text-neutral-400 font-mono text-[11px]">${tx.latency}ms</div>
+        <div class="col-span-4 text-neutral-200 truncate font-sans text-xs">${tx.agentName}</div>
+        <div class="col-span-2 text-right font-mono text-xs ${tx.cleared ? 'text-white' : 'text-rose-400'}">$${tx.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+        <div class="col-span-2 text-center text-neutral-500 font-mono text-[11px]">${tx.latency}ms</div>
         <div class="col-span-2 text-right">
-          <button onclick="inspectReceipt('${tx.receiptHash}', '${tx.preimage}', '${tx.agentId}', ${tx.amount}, ${tx.cleared}, ${tx.block})" class="text-neutral-300 hover:text-purple-300 font-mono text-[11px] underline underline-offset-2">
-            ${tx.receiptHash.slice(0, 10)}... ↗
+          <button onclick="inspectReceipt('${tx.receiptHash}', '${tx.preimage}', '${tx.agentId}', ${tx.amount}, ${tx.cleared}, ${tx.block})" class="text-neutral-400 hover:text-white font-mono text-[11px] underline underline-offset-4">
+            ${tx.receiptHash.slice(0, 10)}...
           </button>
         </div>
       `;
@@ -688,12 +635,11 @@
         sequenceCounter++;
         const seq = sequenceCounter;
         const amount = Math.floor(Math.random() * (agent.limit * 0.5)) + 40;
-        const latency = Math.floor(Math.random() * 24) + 16; // 16ms - 40ms Monad parallel slot
+        const latency = Math.floor(Math.random() * 22) + 16; // 16ms - 38ms Monad parallel slot
         const target = "0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55"; // MockDEX
 
         // Check if this action would breach rolling velocity
         if ((agent.currentSpent || 0) + amount > agent.windowLimit) {
-          // Automatic Real-Time Velocity Quarantine!
           agent.status = "Quarantined";
           agent.quarantineReason = "ERR_HOURLY_VELOCITY_BREACHED";
           agent.flash = "quarantined";
@@ -701,7 +647,7 @@
 
           const { receiptHash, preimage } = await computeRealReceiptHash(agent.id, target, amount, currentBlock, false, seq);
 
-          showQuarantineToast(agent.name, `Exceeded rolling hourly velocity limit ($${((agent.currentSpent || 0) + amount).toLocaleString()} > $${agent.windowLimit.toLocaleString()} limit). Deterministically quarantined. Zero treasury loss.`, receiptHash);
+          showQuarantineToast(agent.name, `Hourly velocity capacity reached ($${((agent.currentSpent || 0) + amount).toLocaleString()} > $${agent.windowLimit.toLocaleString()}). Quarantined with zero treasury debit.`, receiptHash);
 
           return {
             cleared: false,
@@ -749,7 +695,6 @@
       updateStats();
       renderFleet();
 
-      // Clear flash animation after 700ms
       setTimeout(() => {
         AGENTS.forEach(a => { if (a.flash === 'cleared') a.flash = null; });
         renderFleet();
@@ -765,7 +710,6 @@
       toast.classList.remove("translate-y-24", "opacity-0", "pointer-events-none");
       toast.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
 
-      // Auto dismiss after 7 seconds
       setTimeout(dismissToast, 7000);
     }
 
@@ -790,7 +734,7 @@
       const { receiptHash, preimage } = await computeRealReceiptHash(rogue.id, target, maliciousAmount, currentBlock, false, sequenceCounter);
 
       rogue.status = "Quarantined";
-      rogue.quarantineReason = "ERR_TARGET_NOT_ALLOWLISTED & ERR_MAX_SINGLE_TX_EXCEEDED";
+      rogue.quarantineReason = "ERR_TARGET_NOT_ALLOWLISTED";
       rogue.flash = "quarantined";
       totalQuarantined += 1;
 
@@ -805,7 +749,7 @@
         block: currentBlock
       });
 
-      showQuarantineToast(rogue.name, `Unauthorized execution attempt of $${maliciousAmount.toLocaleString()} on unallowlisted target. Firewall intercepted call, reversed state, and quarantined specimen. ZERO loss to treasury.`, receiptHash);
+      showQuarantineToast(rogue.name, `Unauthorized execution attempt on unallowlisted protocol. Intercepted with zero state mutation.`, receiptHash);
 
       updateStats();
       renderFleet();
@@ -813,28 +757,24 @@
 
     // Test Velocity Breach across Fleet
     async function testVelocityBreach() {
-      const active = AGENTS.find(a => a.status === "Active" && a.id !== "AGENT_ROGUE_99");
-      if (!active) {
-        reactivateAllAgents();
-      }
-      const targetAgent = AGENTS.find(a => a.status === "Active" && a.id !== "AGENT_ROGUE_99") || AGENTS[0];
-      targetAgent.currentSpent = targetAgent.windowLimit + 1200;
+      const active = AGENTS.find(a => a.status === "Active" && a.id !== "AGENT_ROGUE_99") || AGENTS[0];
+      active.currentSpent = active.windowLimit + 1200;
       
       currentBlock += 1;
       sequenceCounter++;
       document.getElementById("heroBlockTicker").textContent = `#${currentBlock.toLocaleString()}`;
 
-      const { receiptHash, preimage } = await computeRealReceiptHash(targetAgent.id, "0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55", 500, currentBlock, false, sequenceCounter);
+      const { receiptHash, preimage } = await computeRealReceiptHash(active.id, "0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55", 500, currentBlock, false, sequenceCounter);
 
-      targetAgent.status = "Quarantined";
-      targetAgent.quarantineReason = `ERR_HOURLY_VELOCITY_BREACHED ($${targetAgent.currentSpent.toLocaleString()} > $${targetAgent.windowLimit.toLocaleString()})`;
-      targetAgent.flash = "quarantined";
+      active.status = "Quarantined";
+      active.quarantineReason = `ERR_HOURLY_VELOCITY_BREACHED`;
+      active.flash = "quarantined";
       totalQuarantined += 1;
 
       addTransactionRow({
         cleared: false,
-        agentId: targetAgent.id,
-        agentName: targetAgent.name,
+        agentId: active.id,
+        agentName: active.name,
         amount: 500,
         latency: 18,
         receiptHash: receiptHash,
@@ -842,7 +782,7 @@
         block: currentBlock
       });
 
-      showQuarantineToast(targetAgent.name, `Rolling velocity limit reached ($${targetAgent.currentSpent.toLocaleString()} spent in 1h window > $${targetAgent.windowLimit.toLocaleString()} cap). Specimen placed in Quarantine.`, receiptHash);
+      showQuarantineToast(active.name, `Rolling velocity limit reached ($${active.currentSpent.toLocaleString()} > $${active.windowLimit.toLocaleString()} cap). Specimen placed in Quarantine.`, receiptHash);
 
       updateStats();
       renderFleet();
@@ -876,7 +816,7 @@
         block: currentBlock
       });
 
-      showQuarantineToast(active.name, `Target contract ${maliciousTarget} is not in the firewall allowlist. Call aborted immediately. Specimen quarantined.`, receiptHash);
+      showQuarantineToast(active.name, `Target contract is not allowlisted. Call aborted immediately. Specimen quarantined.`, receiptHash);
 
       updateStats();
       renderFleet();
@@ -925,10 +865,10 @@
       const statusEl = document.getElementById("modalStatus");
       if (cleared) {
         statusEl.textContent = "OK_COMPLIANT";
-        statusEl.className = "text-emerald-400 font-bold";
+        statusEl.className = "text-white font-normal";
       } else {
         statusEl.textContent = "ERR_QUARANTINED";
-        statusEl.className = "text-rose-400 font-bold";
+        statusEl.className = "text-rose-400 font-normal";
       }
 
       document.getElementById("modalExplorerLink").href = `https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25`;
@@ -947,11 +887,11 @@
       resultEl.classList.remove("hidden");
 
       if (recomputed.toLowerCase() === currentModalReceipt.hash.toLowerCase()) {
-        resultEl.innerHTML = `✓ CRYPTOGRAPHIC MATCH CONFIRMED (100% Real SHA-256 Preimage Match)<br><span class="text-[9px] text-emerald-400/80 font-normal">Recomputed: ${recomputed}</span>`;
-        resultEl.className = "mt-2 p-2 rounded bg-emerald-950/40 border border-emerald-500/50 text-emerald-300 text-[10px] text-center font-bold font-mono";
+        resultEl.innerHTML = `CONFIRMED: Real SHA-256 Preimage Match<br><span class="text-[9px] text-neutral-400 font-normal">Root: ${recomputed}</span>`;
+        resultEl.className = "mt-2 p-2 bg-white/[0.03] border border-white/20 text-white text-[10px] text-center font-mono";
       } else {
-        resultEl.textContent = "✗ HASH MISMATCH";
-        resultEl.className = "mt-2 p-2 rounded bg-rose-950/40 border border-rose-500/50 text-rose-300 text-[10px] text-center font-bold font-mono";
+        resultEl.textContent = "HASH MISMATCH";
+        resultEl.className = "mt-2 p-2 bg-rose-950/40 border border-rose-500/50 text-rose-300 text-[10px] text-center font-mono";
       }
     }
 
@@ -963,13 +903,11 @@
       if (isRunning) {
         clearInterval(intervalId);
         isRunning = false;
-        burstBtnText.textContent = "INITIATE PARALLEL BURST";
-        toggleBtn.className = "px-5 py-2.5 bg-white text-black hover:bg-neutral-200 transition-all font-semibold uppercase tracking-wider flex items-center gap-2 active:scale-95";
+        burstBtnText.textContent = "01. EXECUTE PARALLEL BURST";
       } else {
         intervalId = setInterval(generateBurst, 1000);
         isRunning = true;
-        burstBtnText.textContent = "PAUSE EXECUTION BURST";
-        toggleBtn.className = "px-5 py-2.5 bg-amber-400 text-black hover:bg-amber-300 transition-all font-semibold uppercase tracking-wider flex items-center gap-2 active:scale-95";
+        burstBtnText.textContent = "01. PAUSE EXECUTION BURST";
       }
     });
 
