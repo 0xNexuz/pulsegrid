@@ -183,6 +183,8 @@
           <div><span class="text-neutral-600 text-[10px] block">SETTLED VOLUME</span><span id="heroVolumeTicker" class="text-white font-normal mt-0.5 block">$1,482,910</span></div>
           <div class="w-px h-6 bg-white/[0.06]"></div>
           <div><span class="text-neutral-600 text-[10px] block">EQUILIBRIUM</span><span class="text-white font-normal mt-0.5 block"><span id="activeFleetCount">5</span> Active · <span id="quarantinedFleetCount" class="text-rose-400">1</span> Quarantined</span></div>
+          <div class="w-px h-6 bg-white/[0.06] hidden xl:block"></div>
+          <div class="hidden xl:block"><span class="text-neutral-600 text-[10px] block">PYTH ORACLE</span><span class="text-neutral-300 font-normal mt-0.5 block">MON/USD $3.84 · &lt;30ms</span></div>
         </div>
       </div>
 
@@ -367,6 +369,21 @@
           <span class="text-neutral-500 group-hover:text-white text-[10px] mt-2 block transition-colors">MonadScan ↗</span>
         </a>
       </div>
+
+      <!-- Infrastructure Partners & Oracles -->
+      <div class="mt-6 pt-5 border-t border-white/[0.04] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] text-neutral-400">
+        <div class="flex items-center gap-3">
+          <span class="text-neutral-500 uppercase tracking-widest text-[10px]">INFRASTRUCTURE PARTNERS:</span>
+          <span class="text-white font-normal">Monad Parallel EVM</span>
+          <span class="text-neutral-600">·</span>
+          <a href="https://pyth.network" target="_blank" class="text-neutral-300 hover:text-white transition-colors flex items-center gap-1 underline underline-offset-4">
+            Pyth Network (Low-Latency Price Oracle) ↗
+          </a>
+        </div>
+        <div class="text-neutral-500 text-[10px] tracking-wide">
+          Sub-second pull oracle feeds enforce deterministic spending caps & slippage bounds
+        </div>
+      </div>
     </div>
   </section>
 
@@ -423,6 +440,11 @@
             <span class="text-neutral-500 block text-[10px] uppercase">SETTLED VOLUME:</span>
             <span id="modalAmount" class="text-white font-normal">$420.00 USDC</span>
           </div>
+        </div>
+
+        <div class="border-t border-white/5 pt-2 flex items-center justify-between text-[10px] text-neutral-500">
+          <span>VALUATION ORACLE:</span>
+          <span class="text-neutral-300 font-mono">Pyth Network Pull Feed (&lt;30ms)</span>
         </div>
 
         <!-- Real-Time Interactive Preimage Verification -->

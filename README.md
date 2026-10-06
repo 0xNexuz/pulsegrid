@@ -92,6 +92,17 @@ On conventional EVM networks (Ethereum, Arbitrum, Base), executing high-frequenc
 
 ---
 
+## 🔮 Infrastructure Partners & Oracle Integration: Pyth Network
+
+In high-frequency autonomous trading, evaluating USD-denominated spending caps (`$10,000`, `$100,000`) and detecting slippage deviations requires sub-second price feeds. Traditional push oracles (which update only every few minutes) are dangerously slow for 10,000 TPS execution environments like Monad.
+
+PulseGrid integrates **Pyth Network's low-latency pull oracle**:
+* **Sub-Second Price Updates (<30ms):** Pull price feeds are ingested directly alongside execution batches, eliminating oracle staleness.
+* **Deterministic Risk Valuation:** Converts volatile token exposures to normalized USD valuations before executing policy firewall invariants.
+* **Fail-Closed Slippage Interception:** If a trade's execution price deviates beyond Pyth's confidence interval, PulseGrid deterministically halts the transaction with zero treasury loss.
+
+---
+
 ##  Project Structure
 
 ```
