@@ -83,15 +83,17 @@
     </a>
 
     <!-- Center Navigation Links (Matching Exact Museum Reference Spacing) -->
-    <nav class="hidden md:flex items-center gap-10 lg:gap-14 text-xs font-normal tracking-[0.2em] uppercase text-neutral-400">
+    <nav class="hidden md:flex items-center gap-7 lg:gap-9 text-xs font-normal tracking-[0.2em] uppercase text-neutral-400">
       <a href="#hero" class="text-white relative pb-1">
         OVERVIEW
         <span class="absolute bottom-0 left-0 w-5 h-[2px] bg-blue-500 rounded-full"></span>
       </a>
       <a href="#controls" class="hover:text-white transition-colors duration-200">BENCH</a>
       <a href="#ledger" class="hover:text-white transition-colors duration-200">LEDGER</a>
+      <a href="#casestudy" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">CASE STUDY</a>
       <a href="#specimens" class="hover:text-white transition-colors duration-200">SPECIMENS</a>
       <a href="#invariants" class="hover:text-white transition-colors duration-200">INVARIANTS</a>
+      <a href="#contracts" class="hover:text-white transition-colors duration-200">CONTRACTS</a>
       <a href="/docs" class="text-neutral-300 hover:text-white transition-colors duration-200 font-mono text-[11px]">DOCS ↗</a>
     </nav>
 
@@ -212,11 +214,16 @@
           <button onclick="triggerRogueAttack()" class="text-neutral-400 hover:text-rose-300 transition-colors py-1">
             04. ROGUE INCURSION
           </button>
+
+          <a href="#casestudy" class="text-neutral-400 hover:text-white transition-colors py-1 flex items-center gap-1.5 border-l border-white/10 pl-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
+            <span>05. CASE STUDY ↓</span>
+          </a>
         </div>
 
         <div>
           <button onclick="reactivateAllAgents()" class="text-neutral-400 hover:text-white border-b border-neutral-600 hover:border-white pb-0.5 transition-colors">
-            05. RESTORE SANCTUARY EQUILIBRIUM
+            06. RESTORE SANCTUARY EQUILIBRIUM
           </button>
         </div>
       </div>
@@ -225,7 +232,7 @@
   </section>
 
   <!-- Live Execution Ledger (Typographic Inscription Register) -->
-  <section id="ledger" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
+  <section id="ledger" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6 scroll-mt-24">
     <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4 border-b border-white/[0.08] pb-6">
       <div>
         <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">SECTION 02 / REAL-TIME SETTLEMENT</span>
@@ -259,7 +266,7 @@
   </section>
 
   <!-- Section: Forensic Case Study (Anatomy of a Breach Comparison) -->
-  <section id="casestudy" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6">
+  <section id="casestudy" class="relative z-20 max-w-7xl mx-auto px-8 md:px-16 py-12 w-full space-y-6 scroll-mt-24">
     <div class="border-b border-white/[0.08] pb-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
       <div>
         <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-500 block mb-1">SECTION 03 / FORENSIC CASE STUDY & WEB3 INCIDENT PROFILE</span>
@@ -637,8 +644,10 @@
           <span id="toastHash" class="text-neutral-300">0x...</span>
         </div>
         <div class="flex items-center justify-between pt-1 text-[10px]">
-          <span class="text-neutral-400">Treasury Loss: $0.00 (Rollback Enforced)</span>
-          <a href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="text-neutral-300 hover:text-white underline">
+          <a href="#casestudy" onclick="dismissToast()" class="text-neutral-300 hover:text-white underline font-mono">
+            View Breach Case Study ↓
+          </a>
+          <a href="https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25" target="_blank" class="text-neutral-400 hover:text-white underline">
             MonadScan ↗
           </a>
         </div>
@@ -1172,9 +1181,9 @@
         // Step 1: Citadel Sanctuary Hero
         window.scrollTo({ top: 0, behavior: 'smooth' });
         setTourHUD(
-          "STEP 01 / 05 · CITADEL SANCTUARY",
+          "STEP 01 / 06 · CITADEL SANCTUARY",
           "PulseGrid operates as the deterministic sanctuary on Monad—clearing parallel execution, bounding spend velocity, and isolating adversarial anomalies in under 40 milliseconds with sub-second finality.",
-          20
+          16
         );
         tourTimeout = setTimeout(() => executeTourStep(2), 6500);
       } else if (step === 2) {
@@ -1185,24 +1194,34 @@
           toggleBtn.click();
         }
         setTourHUD(
-          "STEP 02 / 05 · PARALLEL CONCURRENCY",
+          "STEP 02 / 06 · PARALLEL CONCURRENCY",
           "Executing real multi-agent parallel bursts across disjoint accounts. Watch the Execution Ledger stream live transactions settling simultaneously at <38ms without state contention.",
-          40
+          33
         );
         tourTimeout = setTimeout(() => executeTourStep(3), 7500);
       } else if (step === 3) {
-        // Step 3: Velocity Breach Quarantine
+        // Step 3: Forensic Case Study (Anatomy of a Breach)
+        const casestudy = document.getElementById("casestudy");
+        if (casestudy) casestudy.scrollIntoView({ behavior: 'smooth' });
+        setTourHUD(
+          "STEP 03 / 06 · ANATOMY OF A BREACH FORENSICS",
+          "Forensic post-mortem: When an autonomous bot suffers prompt injection or private key leak, traditional defense loses $10M+. PulseGrid intercepts the call deterministically with 0ms rollback and $0.00 loss.",
+          50
+        );
+        tourTimeout = setTimeout(() => executeTourStep(4), 8500);
+      } else if (step === 4) {
+        // Step 4: Velocity Breach Quarantine
         const specimens = document.getElementById("specimens");
         if (specimens) specimens.scrollIntoView({ behavior: 'smooth' });
         testVelocityBreach();
         setTourHUD(
-          "STEP 03 / 05 · DETERMINISTIC QUARANTINE",
+          "STEP 04 / 06 · DETERMINISTIC QUARANTINE",
           "Adversarial velocity breach intercepted! Notice how the specimen's capacity gauge triggers an automatic lockdown into QUARANTINED state, halting execution with $0.00 treasury loss.",
-          60
+          66
         );
-        tourTimeout = setTimeout(() => executeTourStep(4), 7500);
-      } else if (step === 4) {
-        // Step 4: Cryptographic Preimage Verification
+        tourTimeout = setTimeout(() => executeTourStep(5), 7500);
+      } else if (step === 5) {
+        // Step 5: Cryptographic Preimage Verification
         const stream = document.getElementById("txStream");
         const firstReceiptBtn = stream ? stream.querySelector("button") : null;
         if (firstReceiptBtn) {
@@ -1213,21 +1232,21 @@
         }, 1200);
 
         setTourHUD(
-          "STEP 04 / 05 · CRYPTOGRAPHIC VERIFIABILITY",
+          "STEP 05 / 06 · CRYPTOGRAPHIC VERIFIABILITY",
           "Every receipt ties to a real SHA-256 state root over its raw preimage. The Web Crypto engine has just verified the exact mathematical match live in the browser in under 0.1ms.",
-          80
+          83
         );
-        tourTimeout = setTimeout(() => executeTourStep(5), 7500);
-      } else if (step === 5) {
-        // Step 5: Live Monad Testnet Deployment
+        tourTimeout = setTimeout(() => executeTourStep(6), 7500);
+      } else if (step === 6) {
+        // Step 6: Live Monad Testnet Deployment & Mined Proofs
         const modal = document.getElementById("receiptModal");
         if (modal) modal.classList.add("hidden");
-        const invariants = document.getElementById("invariants");
-        if (invariants) invariants.scrollIntoView({ behavior: 'smooth' });
+        const contracts = document.getElementById("contracts");
+        if (contracts) contracts.scrollIntoView({ behavior: 'smooth' });
 
         setTourHUD(
-          "STEP 05 / 05 · LIVE ONCHAIN MONAD CONTRACTS",
-          "Production verified. All 5 protocol contracts are deployed and verified live on Monad Testnet at Chain ID 10143. Tour complete! You can now freely interact with the bench.",
+          "STEP 06 / 06 · LIVE ONCHAIN MONAD CONTRACTS",
+          "Production verified. All 5 protocol contracts and 6 live execution proofs are mined on Monad Testnet at Chain ID 10143. Tour complete! You can now freely interact with the bench.",
           100
         );
         tourTimeout = setTimeout(() => {
