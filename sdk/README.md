@@ -10,7 +10,7 @@ PulseGrid provides a **deterministic pre-execution invariant firewall** that pro
 
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
 # Node.js / TypeScript (npm)
@@ -22,7 +22,7 @@ pip install pulsegrid-guard web3
 
 ---
 
-## ⚡ 3-Line TypeScript Quickstart
+## 3-Line TypeScript Quickstart
 
 ```typescript
 import { PulseGridGuard, PULSEGRID_CONTRACTS } from "@pulsegrid/sdk";
@@ -46,7 +46,7 @@ console.log("Cleared on Monad:", receipt.explorerUrl);
 
 ---
 
-## 🐍 Python Quickstart (For LangChain & AI Bots)
+## Python Quickstart (For LangChain & AI Bots)
 
 ```python
 from pulsegrid import AgentFirewall
@@ -66,7 +66,7 @@ print("Action Cleared:", receipt)
 
 ---
 
-## 🏛️ Solidity Interface (`IPulseGridClearing.sol`)
+## Solidity Interface (`IPulseGridClearing.sol`)
 
 For smart contract sub-vaults or autonomous onchain accounts:
 
@@ -101,7 +101,7 @@ contract AutonomousStrategy {
 
 ---
 
-## 🛡️ Enforced Onchain Invariants
+## Enforced Onchain Invariants
 
 | Invariant | Error Code | Mitigation Behavior |
 | :--- | :--- | :--- |
@@ -113,7 +113,7 @@ contract AutonomousStrategy {
 
 ---
 
-## 📍 Deployed Contracts on Monad Testnet (Chain ID: 10143)
+## Deployed Contracts on Monad Testnet (Chain ID: 10143)
 
 - **PulseGridClearing:** [`0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25`](https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25)
 - **PulseGridFirewall:** [`0x0003d9b81E576f2a732b96b7d476C74459e99091`](https://testnet.monadscan.com/address/0x0003d9b81E576f2a732b96b7d476C74459e99091)
@@ -123,5 +123,5 @@ contract AutonomousStrategy {
 
 ---
 
-## 📜 License
+## License
 MIT License. Built natively for Monad.

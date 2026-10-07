@@ -1,4 +1,4 @@
-#  PulseGrid: High-Frequency Autonomous Agent Risk Firewall & Clearing Mesh
+# PulseGrid: High-Frequency Autonomous Agent Risk Firewall & Clearing Mesh
 
 > **Built for the Monad Metropolis Hackathon**  
 > **Live Production Dashboard:** [https://pulsegrid-phi.vercel.app](https://pulsegrid-phi.vercel.app)  
@@ -9,21 +9,21 @@
 
 ---
 
-## 🟣 Live Monad Testnet Deployed Contracts (Chain ID: 10143)
+## Live Monad Testnet Deployed Contracts (Chain ID: 10143)
 
 All PulseGrid protocol contracts are deployed and verified live on **Monad Testnet**:
 
 | Contract Name | Deployed Onchain Address | MonadScan Explorer Link | Description |
 | :--- | :--- | :--- | :--- |
-| **`PulseGridClearing`** | `0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25) | High-throughput concurrent execution mesh & receipt issuer |
-| **`PulseGridFirewall`** | `0x0003d9b81E576f2a732b96b7d476C74459e99091` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0x0003d9b81E576f2a732b96b7d476C74459e99091) | Deterministic risk policy engine & rolling velocity limiter |
-| **`PulseGridRegistry`** | `0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a) | Autonomous agent identity registry & risk tier state machine |
-| **`MockDEX`** | `0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55) | Allowlisted simulated orderbook & trade venue |
-| **`MockUSDC`** | `0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52` | [View on MonadScan ↗](https://testnet.monadscan.com/address/0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52) | Settlement token asset |
+| **`PulseGridClearing`** | `0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25` | [View on MonadScan](https://testnet.monadscan.com/address/0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25) | High-throughput concurrent execution mesh & receipt issuer |
+| **`PulseGridFirewall`** | `0x0003d9b81E576f2a732b96b7d476C74459e99091` | [View on MonadScan](https://testnet.monadscan.com/address/0x0003d9b81E576f2a732b96b7d476C74459e99091) | Deterministic risk policy engine & rolling velocity limiter |
+| **`PulseGridRegistry`** | `0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a` | [View on MonadScan](https://testnet.monadscan.com/address/0x904A4757c3c165Eaee2BE1449bdA7c36EC9CE63a) | Autonomous agent identity registry & risk tier state machine |
+| **`MockDEX`** | `0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55` | [View on MonadScan](https://testnet.monadscan.com/address/0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55) | Allowlisted simulated orderbook & trade venue |
+| **`MockUSDC`** | `0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52` | [View on MonadScan](https://testnet.monadscan.com/address/0x3777D2Ce5cB782f3433a5042fAEBf524Ad29Aa52) | Settlement token asset |
 
 ---
 
-##  Overview
+## Overview
 
 As autonomous AI agents execute high-frequency arbitrage, perp hedging, and automated liquidation onchain, they operate at millisecond velocities far exceeding human oversight. A single prompt injection, parameter hallucination, or private key leak can drain an entire multi-million dollar agent treasury in seconds before traditional risk dashboards can even render an alert.
 
@@ -31,40 +31,43 @@ As autonomous AI agents execute high-frequency arbitrage, perp hedging, and auto
 
 ---
 
-## 🏛️ System Architecture
+## System Architecture
 
-```
-                        ┌────────────────────────────────────────────────────────┐
-                        │      Autonomous AI Agent Fleet (Real Concurrent Async) │
-                        └──────────────────────────┬─────────────────────────────┘
-                                                   │ Signed Execution Requests
-                                                   ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 PULSEGRID PROTOCOL                                     │
-│                                                                                        │
-│  ┌───────────────────────┐    ┌─────────────────────────┐    ┌──────────────────────┐  │
-│  │   PulseGridRegistry   │───▶│    PulseGridFirewall    │───▶│   PulseGridClearing  │  │
-│  │  - Agent Identity     │    │  - Max Single Tx Cap    │    │  - Concurrent Batch  │  │
-│  │  - Risk Tiers (1/2/3) │    │  - Hourly Velocity      │    │  - Target Call       │  │
-│  │  - Active/Quarantine  │    │  - Allowlist Protocol   │    │  - SHA-256 Receipts  │  │
-│  └───────────────────────┘    └─────────────────────────┘    └──────────────────────┘  │
-└──────────────────────────────────────────┬─────────────────────────────────────────────┘
-                                           │
-                    ┌──────────────────────┴──────────────────────┐
-                    │                                             │
-          [Compliant Action]                            [Malicious / Anomaly]
-                    │                                             │
-                    ▼                                             ▼
-       ┌────────────────────────┐                    ┌────────────────────────┐
-       │   MockDEX / Target     │                    │  Deterministic Rollback│
-       │  Sub-second Settlement │                    │  Auto-Quarantine State │
-       │  Emits Verified Receipt│                    │  Zero Treasury Loss    │
-       └────────────────────────┘                    └────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Fleet["Autonomous AI Agent Fleet (Real Concurrent Async)"]
+        A1["Arbitrage Prime<br/>(HFT Arbitrage)"]
+        A2["Liquidator Nova<br/>(Collateral Health)"]
+        A3["Swarm Alpha<br/>(LangChain / ElizaOS)"]
+    end
+
+    subgraph PulseGrid["PulseGrid Protocol (Monad Native · Chain ID: 10143)"]
+        Registry["PulseGridRegistry<br/>• Agent Identity Binding<br/>• Risk Tiers 1 / 2 / 3<br/>• Active vs Quarantined State"]
+        Firewall["PulseGridFirewall<br/>• Max Single-Tx Spending Cap<br/>• Rolling Hourly Velocity Window<br/>• Protocol Target Allowlist<br/>• Emergency Circuit Breaker"]
+        Clearing["PulseGridClearing<br/>• Parallel Batch Execution<br/>• executeAction() Router<br/>• SHA-256 Receipt Minting<br/>• Atomic Agent Quarantine"]
+    end
+
+    subgraph Outcomes["Settlement Outcomes (&lt;1s Finality)"]
+        Pass["Compliant Execution<br/>• Low-Level Target Call<br/>• Volume Debited<br/>• Cryptographic Receipt Issued"]
+        Revert["Deterministic Rejection<br/>• 0ms State Rollback<br/>• Agent Quarantined<br/>• $0 Treasury Loss"]
+    end
+
+    subgraph External["Execution Venues & Targets"]
+        DEX["MockDEX / Allowlisted Protocols<br/>(Sub-second Settlement)"]
+    end
+
+    Fleet -->|"Signed Action Payload"| Registry
+    Registry -->|"Status: Active"| Firewall
+    Registry -.->|"Status: Quarantined"| Revert
+    Firewall -->|"Policy Passed"| Clearing
+    Firewall -.->|"Invariant Breached"| Revert
+    Clearing -->|"Execute Low-Level Call"| Pass
+    Pass --> DEX
 ```
 
 ---
 
-## 🔬 Real Concurrency & Cryptographic Hash Guarantees
+## Real Concurrency & Cryptographic Hash Guarantees
 
 Unlike cosmetic demos that simulate delays using static timers or generate pseudo-random strings, PulseGrid implements authentic high-performance execution primitives:
 
@@ -78,7 +81,7 @@ Unlike cosmetic demos that simulate delays using static timers or generate pseud
 
 ---
 
-##  Why Monad is Load-Bearing
+## Why Monad is Load-Bearing
 
 On conventional EVM networks (Ethereum, Arbitrum, Base), executing high-frequency risk evaluations and clearing dozens of concurrent agent actions sequentially creates:
 1. **State Lock Contention:** Sequential execution locks state, causing dramatic latency spikes.
@@ -92,7 +95,7 @@ On conventional EVM networks (Ethereum, Arbitrum, Base), executing high-frequenc
 
 ---
 
-## 🔮 Infrastructure Partners & Oracle Integration: Pyth Network
+## Infrastructure Partners & Oracle Integration: Pyth Network
 
 In high-frequency autonomous trading, evaluating USD-denominated spending caps (`$10,000`, `$100,000`) and detecting slippage deviations requires sub-second price feeds. Traditional push oracles (which update only every few minutes) are dangerously slow for 10,000 TPS execution environments like Monad.
 
@@ -103,7 +106,7 @@ PulseGrid integrates **Pyth Network's low-latency pull oracle**:
 
 ---
 
-##  Project Structure
+## Project Structure
 
 ```
 pulsegrid/
@@ -140,7 +143,7 @@ pulsegrid/
 
 ---
 
-## 📦 Developer Integration Kit (`@pulsegrid/sdk`)
+## Developer Integration Kit (`@pulsegrid/sdk`)
 
 Beyond the standalone application, PulseGrid provides a reusable developer toolkit enabling any autonomous AI agent (ElizaOS, LangChain, AutoGPT) or trading bot on Monad to route through the deterministic invariant firewall in **3 lines of code**:
 
@@ -196,13 +199,13 @@ interface IPulseGridClearing {
 
 ---
 
-##  Verification & Test Suite (17 / 17 Passing: 12 Contract + 5 SDK Tests)
+## Verification & Test Suite (17 / 17 Passing: 12 Contract + 5 SDK Tests)
 
-PulseGrid includes an exhaustive, zero-dependency specification test suite (`test/run-tests.js`) that validates every protocol invariant, edge-case exception, and threat vector.
+PulseGrid includes an exhaustive, zero-dependency specification test suite (`test/run-tests.js` and `test/sdk.test.js`) that validates every protocol invariant, edge-case exception, and threat vector.
 
 Run the test suite directly:
 ```bash
-node test/run-tests.js
+npm test
 ```
 
 ### Complete Test Catalog
@@ -237,9 +240,16 @@ node test/run-tests.js
 12. **`should prevent reentrancy attacks from malicious targets`**
     - Asserts that recursive calls back into `executeAction` during target execution trigger the reentrancy guard (`Reentrancy guard triggered`), preventing cross-function drainage.
 
+#### Suite 4: `@pulsegrid/sdk` Developer Integration Tests
+13. **`should export correct Monad Testnet Chain ID and contract addresses`**
+14. **`should initialize PulseGridGuard with proper bytes32 padding`**
+15. **`should correctly encode executeAction calldata selector (0xf2031e4a)`**
+16. **`should provide definitions for all onchain firewall invariant errors`**
+17. **`should provide working Python module definitions`**
+
 ---
 
-##  Documented Error Reference & Failure Modes
+## Documented Error Reference & Failure Modes
 
 PulseGrid defines explicit, deterministic error codes for all security and policy violations. Below is the comprehensive error taxonomy:
 
@@ -256,12 +266,12 @@ PulseGrid defines explicit, deterministic error codes for all security and polic
 
 ---
 
-##  Quickstart Guide
+## Quickstart Guide
 
 ### 1. Run Specification Unit Tests
 Verify all policy rules, velocity windows, reentrancy guards, and quarantine transitions:
 ```bash
-node test/run-tests.js
+npm test
 ```
 
 ### 2. Run Real Multi-Agent Concurrent Async Burst Engine
@@ -280,8 +290,5 @@ node server.js
 
 ---
 
-
----
-
-## 🛡️ License
+## License
 MIT License. Built for the Monad Metropolis Hackathon.
