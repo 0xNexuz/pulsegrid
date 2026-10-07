@@ -846,7 +846,8 @@
       const walletDot = document.getElementById("walletDot");
 
       if (userWallet) {
-        await broadcastLiveWalletTx();
+        // Clicking address badge directly disconnects session back to autonomous mode
+        handleWalletDisconnect();
         return;
       }
 
@@ -864,6 +865,7 @@
         }
 
         userWallet = accounts[0];
+        localStorage.removeItem('pulsegrid_wallet_disconnected');
 
         // Check & switch to Monad Testnet (Chain ID 10143 / 0x279f)
         const monadChainIdHex = "0x279f"; // 10143
@@ -904,7 +906,7 @@
           if (bText) bText.textContent = "BROADCAST LIVE MONAD TX (READY)";
         }
 
-        showQuarantineToast("WALLET CONNECTED", `Connected ${userWallet.slice(0, 8)}... on Monad Testnet (Chain ID 10143). Click "BROADCAST LIVE MONAD TX" on the bench (or your address badge) to push a live transaction!`, "0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25");
+        showQuarantineToast("WALLET CONNECTED", `Connected ${userWallet.slice(0, 8)}... on Monad Testnet (Chain ID 10143). Click "BROADCAST LIVE MONAD TX" on the bench to push a live transaction!`, "0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25");
       } catch (err) {
         console.error("Wallet connection error:", err);
         walletBtnText.textContent = "CONNECT WALLET";
@@ -913,6 +915,10 @@
 
     function handleWalletDisconnect() {
       userWallet = null;
+      try {
+        localStorage.setItem('pulsegrid_wallet_disconnected', 'true');
+      } catch (e) {}
+
       const walletDot = document.getElementById("walletDot");
       const walletBtnText = document.getElementById("walletBtnText");
       const walletBtn = document.getElementById("walletBtn");
@@ -1558,8 +1564,9 @@
       generateBurst();
     }
 
-    // Auto-detect existing wallet session if available
-    if (window.ethereum && window.ethereum.selectedAddress) {
+    // Auto-detect existing wallet session only if user hasn't explicitly disconnected
+    const isExplicitlyDisconnected = localStorage.getItem('pulsegrid_wallet_disconnected') === 'true';
+    if (!isExplicitlyDisconnected && window.ethereum && window.ethereum.selectedAddress) {
       userWallet = window.ethereum.selectedAddress;
       const walletBtnText = document.getElementById("walletBtnText");
       const walletDot = document.getElementById("walletDot");
