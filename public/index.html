@@ -837,6 +837,11 @@
       const walletBtnText = document.getElementById("walletBtnText");
       const walletDot = document.getElementById("walletDot");
 
+      if (userWallet) {
+        await broadcastLiveWalletTx();
+        return;
+      }
+
       if (!window.ethereum) {
         showQuarantineToast("WALLET PROVIDER", "No Web3 wallet detected. PulseGrid is running in Autonomous Simulation Mode with real client-side cryptographic hashing. Install MetaMask or Rabby to sign live on Monad Testnet (Chain ID 10143).", "0x0000000000000000000000000000000000000000000000000000000000000000");
         return;
@@ -878,7 +883,15 @@
         walletBtnText.textContent = `${userWallet.slice(0, 6)}...${userWallet.slice(-4)}`;
         walletBtn.classList.add("border-emerald-500/50");
 
-        showQuarantineToast("METAMASK CONNECTED", `Connected ${userWallet.slice(0, 8)}... on Monad Testnet (Chain ID 10143). You can now broadcast live onchain transactions to PulseGridClearing.`, "0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25");
+        const broadcastBtn = document.getElementById("broadcastOnchainBtn");
+        if (broadcastBtn) {
+          broadcastBtn.classList.remove("border-white/20");
+          broadcastBtn.classList.add("border-purple-400", "bg-purple-950/30", "text-white");
+          const bText = document.getElementById("broadcastBtnText");
+          if (bText) bText.textContent = "BROADCAST LIVE MONAD TX (READY)";
+        }
+
+        showQuarantineToast("WALLET CONNECTED", `Connected ${userWallet.slice(0, 8)}... on Monad Testnet (Chain ID 10143). Click "BROADCAST LIVE MONAD TX" on the bench (or your address badge) to push a live transaction!`, "0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25");
       } catch (err) {
         console.error("Wallet connection error:", err);
         walletBtnText.textContent = "CONNECT WALLET";
@@ -1513,10 +1526,17 @@
       const walletBtnText = document.getElementById("walletBtnText");
       const walletDot = document.getElementById("walletDot");
       const walletBtn = document.getElementById("walletBtn");
+      const broadcastBtn = document.getElementById("broadcastOnchainBtn");
+      const bText = document.getElementById("broadcastBtnText");
       if (walletBtnText && walletDot && walletBtn) {
         walletDot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400";
         walletBtnText.textContent = `${userWallet.slice(0, 6)}...${userWallet.slice(-4)}`;
         walletBtn.classList.add("border-emerald-500/50");
+      }
+      if (broadcastBtn && bText) {
+        broadcastBtn.classList.remove("border-white/20");
+        broadcastBtn.classList.add("border-purple-400", "bg-purple-950/30", "text-white");
+        bText.textContent = "BROADCAST LIVE MONAD TX (READY)";
       }
     }
   </script>
