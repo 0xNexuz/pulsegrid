@@ -7,3 +7,9 @@ chrome_tmp/
 repo/
 document.json
 document_schema.json
+artifacts/
+sdk/
+test/
+scripts/
+agent-fleet/
+contracts/
