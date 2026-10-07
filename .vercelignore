@@ -1,0 +1,9 @@
+*.mp4
+*.mp3
+*.png
+*.tsrct
+chrome_tall/
+chrome_tmp/
+repo/
+document.json
+document_schema.json

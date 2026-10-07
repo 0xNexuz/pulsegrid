@@ -109,6 +109,10 @@
         <span id="walletBtnText">CONNECT WALLET</span>
       </button>
 
+      <button id="disconnectBtn" onclick="handleWalletDisconnect()" title="Disconnect Wallet" class="hidden px-2 py-1 bg-white/[0.02] border border-white/10 hover:border-rose-400/50 text-neutral-400 hover:text-rose-300 text-[10px] tracking-widest uppercase transition-colors flex items-center gap-1 cursor-pointer">
+        <span>DISCONNECT</span>
+      </button>
+
       <span class="hidden xl:inline-flex items-center gap-2 px-3 py-1 border border-white/10 text-neutral-400 text-[10px] tracking-widest uppercase">
         <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
         MONAD · 10143
@@ -229,6 +233,10 @@
           <button id="broadcastOnchainBtn" onclick="broadcastLiveWalletTx()" class="text-neutral-300 hover:text-white border border-white/20 hover:border-white px-2.5 py-1 transition-colors flex items-center gap-1.5 cursor-pointer">
             <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
             <span id="broadcastBtnText">BROADCAST LIVE MONAD TX</span>
+          </button>
+
+          <button id="benchDisconnectBtn" onclick="handleWalletDisconnect()" class="hidden text-neutral-500 hover:text-rose-300 transition-colors py-1 text-[11px] uppercase tracking-wider cursor-pointer">
+            DISCONNECT
           </button>
         </div>
 
@@ -883,6 +891,11 @@
         walletBtnText.textContent = `${userWallet.slice(0, 6)}...${userWallet.slice(-4)}`;
         walletBtn.classList.add("border-emerald-500/50");
 
+        const disconnectBtn = document.getElementById("disconnectBtn");
+        if (disconnectBtn) disconnectBtn.classList.remove("hidden");
+        const benchDisconnectBtn = document.getElementById("benchDisconnectBtn");
+        if (benchDisconnectBtn) benchDisconnectBtn.classList.remove("hidden");
+
         const broadcastBtn = document.getElementById("broadcastOnchainBtn");
         if (broadcastBtn) {
           broadcastBtn.classList.remove("border-white/20");
@@ -896,6 +909,31 @@
         console.error("Wallet connection error:", err);
         walletBtnText.textContent = "CONNECT WALLET";
       }
+    }
+
+    function handleWalletDisconnect() {
+      userWallet = null;
+      const walletDot = document.getElementById("walletDot");
+      const walletBtnText = document.getElementById("walletBtnText");
+      const walletBtn = document.getElementById("walletBtn");
+      const disconnectBtn = document.getElementById("disconnectBtn");
+      const benchDisconnectBtn = document.getElementById("benchDisconnectBtn");
+      const broadcastBtn = document.getElementById("broadcastOnchainBtn");
+      const bText = document.getElementById("broadcastBtnText");
+
+      if (walletDot) walletDot.className = "w-1.5 h-1.5 rounded-full bg-neutral-400";
+      if (walletBtnText) walletBtnText.textContent = "CONNECT WALLET";
+      if (walletBtn) walletBtn.classList.remove("border-emerald-500/50");
+      if (disconnectBtn) disconnectBtn.classList.add("hidden");
+      if (benchDisconnectBtn) benchDisconnectBtn.classList.add("hidden");
+
+      if (broadcastBtn) {
+        broadcastBtn.classList.remove("border-purple-400", "bg-purple-950/30", "text-white");
+        broadcastBtn.classList.add("border-white/20");
+      }
+      if (bText) bText.textContent = "BROADCAST LIVE MONAD TX";
+
+      showQuarantineToast("WALLET DISCONNECTED", "Disconnected from Web3 wallet session. PulseGrid is now operating in Autonomous Simulation Mode with zero external dependencies.", "0x0000000000000000000000000000000000000000000000000000000000000000");
     }
 
     async function broadcastLiveWalletTx() {
@@ -1528,11 +1566,15 @@
       const walletBtn = document.getElementById("walletBtn");
       const broadcastBtn = document.getElementById("broadcastOnchainBtn");
       const bText = document.getElementById("broadcastBtnText");
+      const disconnectBtn = document.getElementById("disconnectBtn");
+      const benchDisconnectBtn = document.getElementById("benchDisconnectBtn");
       if (walletBtnText && walletDot && walletBtn) {
         walletDot.className = "w-1.5 h-1.5 rounded-full bg-emerald-400";
         walletBtnText.textContent = `${userWallet.slice(0, 6)}...${userWallet.slice(-4)}`;
         walletBtn.classList.add("border-emerald-500/50");
       }
+      if (disconnectBtn) disconnectBtn.classList.remove("hidden");
+      if (benchDisconnectBtn) benchDisconnectBtn.classList.remove("hidden");
       if (broadcastBtn && bText) {
         broadcastBtn.classList.remove("border-white/20");
         broadcastBtn.classList.add("border-purple-400", "bg-purple-950/30", "text-white");
