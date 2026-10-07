@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "compile": "hardhat compile",
-    "test": "hardhat test",
+    "test": "node test/run-tests.js && node test/sdk.test.js",
+    "test:unit": "node test/run-tests.js",
+    "test:sdk": "node test/sdk.test.js",
     "simulate": "node agent-fleet/fleet-simulator.js",
     "deploy:monad": "hardhat run scripts/deploy.js --network monadTestnet"
   },

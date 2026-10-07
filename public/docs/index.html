@@ -107,6 +107,7 @@
         <li><a href="#test-suite" class="hover:text-white transition-colors block py-1">5. Test Suite & Errors</a></li>
         <li><a href="#truth-table" class="hover:text-white transition-colors block py-1">6. Real vs Simulated Truth</a></li>
         <li><a href="#monad-loadbearing" class="hover:text-white transition-colors block py-1">7. Monad Parallel EVM</a></li>
+        <li><a href="#dev-kit" class="hover:text-purple-300 text-purple-300 font-medium transition-colors block py-1">8. Developer Kit (@pulsegrid/sdk)</a></li>
       </ul>
 
       <div class="pt-6 border-t border-white/10 space-y-3">
@@ -467,6 +468,120 @@
               When an adversarial anomaly is detected, quarantine state is finalized within 1 second across the entire network, preventing secondary attack transactions in consecutive slots.
             </p>
           </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Developer Kit & Agent Integration SDK -->
+      <section id="dev-kit" class="space-y-6">
+        <div class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500">SECTION 08 / ECOSYSTEM INTEGRATION</div>
+        <h2 class="font-serif text-3xl md:text-4xl text-white font-normal">Developer Kit (@pulsegrid/sdk)</h2>
+        <p class="text-neutral-300 leading-relaxed text-sm font-light">
+          PulseGrid extracts a lightweight, production-grade SDK allowing any autonomous AI agent (ElizaOS, LangChain, AutoGPT) or algorithmic bot to route trades, swaps, and rebalancing through the deterministic Monad invariant firewall in three lines of code.
+        </p>
+
+        <!-- Quick Install Pills -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+          <div class="p-4 bg-white/[0.02] border border-white/10 space-y-1.5">
+            <span class="text-neutral-500 uppercase text-[10px] block">TypeScript / Node.js Package</span>
+            <div class="text-white font-bold flex items-center justify-between">
+              <code>npm install @pulsegrid/sdk ethers</code>
+              <span class="text-emerald-400 text-[10px]">v1.0.0</span>
+            </div>
+          </div>
+          <div class="p-4 bg-white/[0.02] border border-white/10 space-y-1.5">
+            <span class="text-neutral-500 uppercase text-[10px] block">Python Package (AI / LangChain)</span>
+            <div class="text-white font-bold flex items-center justify-between">
+              <code>pip install pulsegrid-guard web3</code>
+              <span class="text-emerald-400 text-[10px]">v1.0.0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Examples -->
+        <div class="space-y-4">
+          <!-- 1. TypeScript Example -->
+          <div class="card-glass p-6 space-y-3 font-mono text-xs border-l-2 border-l-purple-500">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <span class="text-purple-300 font-bold text-xs uppercase flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                1. TypeScript / Node.js Integration (ElizaOS / Viem / Ethers)
+              </span>
+              <span class="text-neutral-500 text-[10px]">sdk/src/guard.ts</span>
+            </div>
+            <pre class="text-neutral-300 overflow-x-auto text-[11px] leading-relaxed"><code><span class="text-purple-400">import</span> { PulseGridGuard, PULSEGRID_CONTRACTS } <span class="text-purple-400">from</span> <span class="text-emerald-300">"@pulsegrid/sdk"</span>;
+<span class="text-purple-400">import</span> { ethers } <span class="text-purple-400">from</span> <span class="text-emerald-300">"ethers"</span>;
+
+<span class="text-neutral-500">// 1. Initialize guard with your registered Monad agent ID</span>
+<span class="text-purple-400">const</span> guard = <span class="text-purple-400">new</span> PulseGridGuard({
+  agentId: <span class="text-emerald-300">"AGENT_PULSE_01"</span>,
+  signer: <span class="text-purple-400">new</span> ethers.Wallet(process.env.AGENT_PRIVATE_KEY, provider),
+  clearingAddress: PULSEGRID_CONTRACTS.CLEARING <span class="text-neutral-500">// 0xF69164fEFE9f8ebD0757B3351F3d72cae8647f25</span>
+});
+
+<span class="text-neutral-500">// 2. Execute any trade or swap — policy checked pre-execution</span>
+<span class="text-purple-400">const</span> receipt = <span class="text-purple-400">await</span> guard.execute({
+  target: PULSEGRID_CONTRACTS.MOCK_DEX,        <span class="text-neutral-500">// Destination protocol</span>
+  amount: ethers.parseUnits(<span class="text-emerald-300">"100"</span>, <span class="text-orange-400">6</span>),          <span class="text-neutral-500">// Enforced against single-tx and velocity cap</span>
+  callData: <span class="text-emerald-300">"0x"</span>                               <span class="text-neutral-500">// Encoded swap payload</span>
+});
+
+console.log(<span class="text-emerald-300">"Settled on Monad in &lt;1s:"</span>, receipt.explorerUrl);</code></pre>
+          </div>
+
+          <!-- 2. Python Example -->
+          <div class="card-glass p-6 space-y-3 font-mono text-xs border-l-2 border-l-blue-500">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <span class="text-blue-300 font-bold text-xs uppercase flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                2. Python / LangChain AI Agent Integration (LLM Guard)
+              </span>
+              <span class="text-neutral-500 text-[10px]">sdk/python/pulsegrid/guard.py</span>
+            </div>
+            <pre class="text-neutral-300 overflow-x-auto text-[11px] leading-relaxed"><code><span class="text-purple-400">from</span> pulsegrid <span class="text-purple-400">import</span> AgentFirewall
+
+<span class="text-neutral-500"># Wrap agent tool or execution hook before calling Monad</span>
+firewall = AgentFirewall(
+    agent_id=<span class="text-emerald-300">"AGENT_SWARM_ALPHA"</span>,
+    rpc_url=<span class="text-emerald-300">"https://testnet-rpc.monad.xyz"</span>
+)
+
+<span class="text-neutral-500"># Intercepts prompt injections before funds leave the treasury</span>
+receipt = firewall.protect_action(
+    target=<span class="text-emerald-300">"0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55"</span>,
+    amount=<span class="text-orange-400">50.0</span>
+)
+print(<span class="text-emerald-300">"Protected Action Result:"</span>, receipt)</code></pre>
+          </div>
+
+          <!-- 3. Solidity Interface Example -->
+          <div class="card-glass p-6 space-y-3 font-mono text-xs border-l-2 border-l-emerald-500">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <span class="text-emerald-300 font-bold text-xs uppercase flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                3. Onchain Smart Contract Interface (IPulseGridClearing.sol)
+              </span>
+              <span class="text-neutral-500 text-[10px]">contracts/PulseGridClearing.sol</span>
+            </div>
+            <pre class="text-neutral-300 overflow-x-auto text-[11px] leading-relaxed"><code><span class="text-neutral-500">// SPDX-License-Identifier: MIT</span>
+<span class="text-purple-400">pragma solidity</span> ^<span class="text-orange-400">0.8.24</span>;
+
+<span class="text-purple-400">interface</span> <span class="text-yellow-300">IPulseGridClearing</span> {
+    <span class="text-purple-400">function</span> <span class="text-blue-300">executeAction</span>(
+        <span class="text-purple-400">bytes32</span> agentId,
+        <span class="text-purple-400">address</span> target,
+        <span class="text-purple-400">uint256</span> amount,
+        <span class="text-purple-400">bytes calldata</span> data
+    ) <span class="text-purple-400">external returns</span> (<span class="text-purple-400">bytes memory</span>);
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Preflight vs Parallel Verification -->
+        <div class="card-glass p-5 space-y-2 font-mono text-xs">
+          <span class="text-white font-bold block text-sm">Dual Verification: Client-Side Preflight + Onchain Parallel Invariant Gate</span>
+          <p class="text-neutral-400 text-[11px] leading-relaxed font-sans">
+            The SDK performs an immediate local pre-flight simulation against known policy thresholds prior to RPC broadcast, ensuring agents never waste gas on invalid transactions. When submitted, Monad's parallel execution engine evaluates the onchain invariant gate (<code class="text-white">PulseGridFirewall.verifyPolicy</code>) within the same 1-second slot, ensuring tamper-evident enforcement even if client software is completely hijacked.
+          </p>
         </div>
 
         <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">

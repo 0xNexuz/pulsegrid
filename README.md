@@ -114,8 +114,13 @@ pulsegrid/
 │   └── mocks/
 │       ├── MockUSDC.sol         # Settlement ERC20 token
 │       └── MockDEX.sol          # Simulated orderbook & swap venue
+├── sdk/                         # Official Developer Kit (@pulsegrid/sdk & pulsegrid-py)
+│   ├── src/                     # TypeScript SDK (PulseGridGuard, ABIs, types, constants)
+│   ├── python/pulsegrid/        # Python SDK (AgentFirewall for LangChain / AI agents)
+│   └── README.md                # SDK developer quickstart guide
 ├── test/
 │   ├── run-tests.js             # Zero-dependency specification & unit test suite (12 tests)
+│   ├── sdk.test.js              # Developer SDK unit test suite (5 tests)
 │   └── pulsegrid.test.js        # Hardhat integration tests
 ├── agent-fleet/
 │   └── fleet-simulator.js       # Real multi-agent concurrent async burst engine
@@ -135,7 +140,63 @@ pulsegrid/
 
 ---
 
-##  Verification & Test Suite (12 / 12 Passing)
+## 📦 Developer Integration Kit (`@pulsegrid/sdk`)
+
+Beyond the standalone application, PulseGrid provides a reusable developer toolkit enabling any autonomous AI agent (ElizaOS, LangChain, AutoGPT) or trading bot on Monad to route through the deterministic invariant firewall in **3 lines of code**:
+
+### 1. TypeScript / Node.js (`@pulsegrid/sdk`)
+```typescript
+import { PulseGridGuard, PULSEGRID_CONTRACTS } from "@pulsegrid/sdk";
+import { ethers } from "ethers";
+
+// 1. Initialize guard with your registered Monad agent ID
+const guard = new PulseGridGuard({
+  agentId: "AGENT_PULSE_01",
+  signer: new ethers.Wallet(process.env.AGENT_PRIVATE_KEY!, provider)
+});
+
+// 2. Execute any trade through the deterministic onchain firewall
+const receipt = await guard.execute({
+  target: PULSEGRID_CONTRACTS.MOCK_DEX, // Allowlisted DEX
+  amount: ethers.parseUnits("100", 6),  // Single-tx & velocity cap checked
+  callData: "0x"                         // Swap payload
+});
+
+console.log("Settled on Monad in <1s:", receipt.explorerUrl);
+```
+
+### 2. Python (`pulsegrid-guard`) for LangChain / AI Swarms
+```python
+from pulsegrid import AgentFirewall
+
+# Wrap agent execution hook before submitting to Monad
+firewall = AgentFirewall(
+    agent_id="AGENT_SWARM_ALPHA",
+    rpc_url="https://testnet-rpc.monad.xyz"
+)
+
+# Intercepts prompt injections before funds leave the treasury
+receipt = firewall.protect_action(
+    target="0xA3E444Ca0626df5d1843c450BCfDd28AD25a4A55",
+    amount=50.0
+)
+```
+
+### 3. Solidity Interface (`IPulseGridClearing.sol`)
+```solidity
+interface IPulseGridClearing {
+    function executeAction(
+        bytes32 agentId,
+        address target,
+        uint256 amount,
+        bytes calldata data
+    ) external returns (bytes memory);
+}
+```
+
+---
+
+##  Verification & Test Suite (17 / 17 Passing: 12 Contract + 5 SDK Tests)
 
 PulseGrid includes an exhaustive, zero-dependency specification test suite (`test/run-tests.js`) that validates every protocol invariant, edge-case exception, and threat vector.
 

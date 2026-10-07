@@ -1,0 +1,25 @@
+{
+  "name": "@pulsegrid/sdk",
+  "version": "1.0.0",
+  "description": "Deterministic Pre-Execution Invariant Firewall SDK for Autonomous AI Agents and Trading Bots on Monad",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node ../test/sdk.test.js"
+  },
+  "keywords": [
+    "monad",
+    "ai-agents",
+    "firewall",
+    "web3",
+    "security",
+    "invariants",
+    "hft"
+  ],
+  "author": "PulseGrid Citadel Protocol",
+  "license": "MIT",
+  "peerDependencies": {
+    "ethers": "^6.0.0"
+  }
+}
